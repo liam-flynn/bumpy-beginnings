@@ -1,0 +1,37 @@
+
+<div class="container mx-auto px-4 flex flex-col items-center md:w-max">
+    <div class="p-6 bg-white shadow-md rounded-lg w-96">
+        {% if milestone.image %}
+        <div class="milestone-image">
+            <img src="{{ milestone.image.url }}" class="w-full rounded-lg shadow max-w-2xl">
+        </div>
+        {% endif %}
+        {% if milestone.week %}
+            <h1 class="text-3xl font-bold text-gray-800 my-2 text-center">Week {{ milestone.week }}</h1>
+        {% else %}
+            <h1 class="text-3xl font-bold text-gray-800 my-2 text-center">
+                {{ milestone.start_age_months }} - {{ milestone.end_age_months }} Months
+            </h1>
+        {% endif %}
+        <div class="prose break-words">
+            {{ milestone.description|safe }}
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .prose ul {
+        list-style-type: disc; 
+        padding-left: 20px;    
+    }
+    .prose ol {
+        list-style-type: decimal; 
+        padding-left: 20px;      
+    }
+    
+    .prose li {
+        margin-bottom: 5px; 
+    }
+    
+    </style>

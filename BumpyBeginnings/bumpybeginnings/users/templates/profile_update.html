@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg mt-6">
+    <h1 class="text-3xl font-bold mb-6">Update Your Profile</h1>
+    
+    {% if messages %}
+        <ul class="mb-4">
+            {% for message in messages %}
+                <li class="mb-2 p-2 border rounded {{ message.tags }}">
+                    {{ message }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+        
+
+        <div class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">User Information</h2>
+            {{ user_form.non_field_errors }}
+            <div class="space-y-4">
+                {% for field in user_form %}
+                    <div>
+                        <label for="{{ field.id_for_label }}" class="block font-medium text-gray-700">
+                            {{ field.label }}
+                        </label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <p class="text-red-500 text-xs italic">{{ field.errors|striptags }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+ 
+        <div class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Profile Details</h2>
+            {{ site_user_form.non_field_errors }}
+            <div class="space-y-4">
+                {% for field in site_user_form %}
+                    {% if field.name == "isMother" %}
+                    <div>
+                        <label for="isMother" class="block text-sm font-medium text-gray-700">
+                            Are you the mother?
+                        </label>
+                        <select id="isMother" name="isMother"
+                            class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-sky-400 focus:border-sky-400">
+                            <option value="True" {% if field.value|stringformat:"s" == "True" %}selected{% endif %}>Yes</option>
+                            <option value="False" {% if field.value|stringformat:"s" == "False" %}selected{% endif %}>No</option>
+                        </select>
+                    </div>
+                    {% else %}
+                        <div>
+                            <label for="{{ field.id_for_label }}" class="block font-medium text-gray-700">
+                                {{ field.label }}
+                            </label>
+                            {{ field }}
+                            {% if field.errors %}
+                                <p class="text-red-500 text-xs italic">{{ field.errors|striptags }}</p>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        
+
+        <div class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Change Password</h2>
+            {{ password_form.non_field_errors }}
+            <div class="space-y-4">
+                {% for field in password_form %}
+                    <div>
+                        <label for="{{ field.id_for_label }}" class="block font-medium text-gray-700">
+                            {{ field.label }}
+                        </label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <p class="text-red-500 text-xs italic">{{ field.errors|striptags }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <button type="submit" class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+            Update Profile
+        </button>
+    </form>
+</div>
+{% endblock %}

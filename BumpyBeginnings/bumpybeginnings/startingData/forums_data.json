@@ -1,0 +1,38 @@
+[
+{
+  "model": "forum.forum",
+  "pk": 1,
+  "fields": {
+    "forumName": "Voucher Sharing",
+    "description": "This is a forum which allows parents to share information on where to find the most useful and lucrative vouchers",
+    "isLive": true
+  }
+},
+{
+  "model": "forum.forum",
+  "pk": 2,
+  "fields": {
+    "forumName": "Old Forum",
+    "description": "You shouldn't be able to see this.",
+    "isLive": false
+  }
+},
+{
+  "model": "forum.forum",
+  "pk": 4,
+  "fields": {
+    "forumName": "Stay At Home Parent Advise",
+    "description": "This is a forum dedicated to support stay at home parents, whoever they may be.",
+    "isLive": true
+  }
+},
+{
+  "model": "forum.forum",
+  "pk": 5,
+  "fields": {
+    "forumName": "Getting Baby to Sleep Tips",
+    "description": "Sometimes they just won't sleep. Share your tips for tired parents.",
+    "isLive": true
+  }
+}
+]

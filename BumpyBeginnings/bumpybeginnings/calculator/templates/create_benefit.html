@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mx-auto px-4">
+  <h1 class="text-3xl font-bold text-gray-800 mb-6">Create New Benefit</h1>
+  <div class="p-6 bg-white shadow rounded-lg">
+    <form method="post">
+      {% csrf_token %}
+      {{ benefit_form.media }}
+      {{ benefit_form.as_p }}
+      <button type="submit" name="submit_benefit" class="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-200">
+        Create Benefit
+      </button>
+      <a href="{% url 'benefit_list' %}" class="ml-4 text-blue-600 hover:underline">Cancel</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

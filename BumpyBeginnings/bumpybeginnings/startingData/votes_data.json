@@ -1,0 +1,29 @@
+[
+{
+  "model": "forum.vote",
+  "pk": 187,
+  "fields": {
+    "user": 37,
+    "comment": 85,
+    "vote_type": "upvote"
+  }
+},
+{
+  "model": "forum.vote",
+  "pk": 188,
+  "fields": {
+    "user": 37,
+    "comment": 86,
+    "vote_type": "upvote"
+  }
+},
+{
+  "model": "forum.vote",
+  "pk": 190,
+  "fields": {
+    "user": 1,
+    "comment": 86,
+    "vote_type": "upvote"
+  }
+}
+]

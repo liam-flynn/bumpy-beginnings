@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="m-20 flex items-center justify-center">
+
+    <div class="flex flex-row bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-4xl">
+
+        <div class="flex-1 p-10 bg-sky-200">
+            {% if user.is_authenticated %}
+                <h2 class="text-2xl font-semibold mb-6 text-slate-700">Additional Details</h2>
+                <p class="text-slate-600 mb-4">
+                    Provide these details to help us tailor your experience.
+                </p>
+                <form id="details_form" method="post" action="/get-details/" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="space-y-4">
+
+                        <div>
+                            <label for="baby_status" class="block text-sm font-medium text-gray-700">
+                                Baby Status
+                            </label>
+                            <select id="baby_status" name="baby_status" required
+                                class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-sky-400 focus:border-sky-400">
+                                <option value="" disabled selected>Select Baby Status</option>
+                                <option value="due">Baby is not born yet</option>
+                                <option value="born">Baby is already born</option>
+                            </select>
+                        </div>
+
+                
+                        <div id="dueDateSection" class="hidden">
+                            <label for="dueDate" class="block text-sm font-medium text-gray-700">
+                                <span id="dueDateLabel">Due Date</span>
+                            </label>
+                            <input type="date" id="dueDate" name="dueDate"
+                                class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-sky-400 focus:border-sky-400" />
+                        </div>
+
+          
+                        <div>
+                            <label for="isMother" class="block text-sm font-medium text-gray-700">
+                                Are you the mother?
+                            </label>
+                            <select id="isMother" name="isMother" required
+                                class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-sky-400 focus:border-sky-400">
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+
+
+                        <div id="partnerNameSection" class="hidden">
+                            <label for="partnerName" class="block text-sm font-medium text-gray-700">
+                                Partner's Name
+                            </label>
+                            <input type="text" id="partnerName" name="partnerName"
+                                class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-sky-400 focus:border-sky-400"
+                                placeholder="Enter your partner's name">
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <button type="submit"
+                            class="w-full bg-sky-600 text-white font-semibold py-2 rounded-lg hover:bg-sky-900 transition-all duration-200 cursor-pointer shadow-lg">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            {% endif %}
+        </div>
+
+
+        <div class="flex-1 p-10 flex flex-col justify-center items-center bg-sky-100">
+            <h2 class="text-2xl font-semibold mb-6 text-slate-700">Why Provide Details?</h2>
+            <p class="text-center text-slate-600">
+                Sharing these details ensures we can offer you the best personalized experience possible.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const isMother = document.getElementById('isMother');
+        const partnerNameSection = document.getElementById('partnerNameSection');
+
+        function toggleFields() {
+            if (isMother.value === "Yes") {
+
+                partnerNameSection.classList.add('hidden');
+            } else if (isMother.value === "No") {
+
+                partnerNameSection.classList.remove('hidden');
+            } else {
+                partnerNameSection.classList.add('hidden');
+            }
+        }
+
+        function togglePartnerField() {
+            if (withFather.value === "Yes") {
+                partnerNameSection.classList.remove('hidden');
+            } else {
+                partnerNameSection.classList.add('hidden');
+            }
+        }
+
+        // Initial state
+        toggleFields();
+
+        // Event listeners
+        isMother.addEventListener('change', toggleFields);
+
+
+
+        const babyStatus = document.getElementById('baby_status');
+        const dueDateSection = document.getElementById('dueDateSection');
+        const dueDateLabel = document.getElementById('dueDateLabel');
+
+        function toggleDueDateLabel() {
+            if (babyStatus.value === 'due') {
+                dueDateLabel.textContent = 'Due Date';
+                dueDateSection.classList.remove('hidden');
+            } else if (babyStatus.value === 'born') {
+                dueDateLabel.textContent = 'Baby\'s Birthday';
+                dueDateSection.classList.remove('hidden');
+            } else {
+                dueDateSection.classList.add('hidden');
+            }
+        }
+
+        babyStatus.addEventListener('change', toggleDueDateLabel);
+        toggleDueDateLabel(); // Run on page load to set initial state
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,146 @@
+[
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "",
+    "last_login": "2025-03-03T16:53:37.291Z",
+    "is_superuser": false,
+    "username": "LiamFlynn",
+    "first_name": "Liam",
+    "last_name": "Flynn",
+    "email": "liam_flynn@live.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-11-21T22:00:21.642Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 34,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$wnrHA7JC8Muabot4m67Etu$hA6sKocUvp8Y+EKPYR1WEnFgD1eo/fgQNWW+NqJ1rcc=",
+    "last_login": "2024-11-24T18:49:14.059Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "lpf15@student.london.ac.uk",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-11-23T18:22:11.451Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 35,
+  "fields": {
+    "password": "!3FUbTeKi75Rnr1lXYs1NWeijnG7It6kfoM9yrZX1",
+    "last_login": "2024-12-01T18:54:56.010Z",
+    "is_superuser": false,
+    "username": "liam",
+    "first_name": "Liam",
+    "last_name": "Flynn",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-11-24T12:57:48.456Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 36,
+  "fields": {
+    "password": "!7upEI4UgHPoxYHBeks6n4NLqcORTAS3pxN5D7Zva",
+    "last_login": "2025-02-18T21:51:55.813Z",
+    "is_superuser": false,
+    "username": "LiamTheUser",
+    "first_name": "Liam",
+    "last_name": "Flynn",
+    "email": "liamflynn1991@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-11-24T18:53:36.321Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 37,
+  "fields": {
+    "password": "",
+    "last_login": "2025-03-03T21:29:26.688Z",
+    "is_superuser": false,
+    "username": "LiamFlynnTest",
+    "first_name": "Liam",
+    "last_name": "Flynn",
+    "email": "liam_flynn@live.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-11-26T21:26:25.653Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 38,
+  "fields": {
+    "password": "!TfNmf2vag5CzprJaaJBBD5r2djJtTVH445xVdGyO",
+    "last_login": "2024-12-27T21:16:16.726Z",
+    "is_superuser": false,
+    "username": "SarahTheMod",
+    "first_name": "Rats",
+    "last_name": "",
+    "email": "rats.in.the.walls.91@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-11-27T21:15:55.148Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 39,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$hUsDLzXJPjOS9tBYBQXoM1$2IuhB2//lM4oSWIGxvpVtpx83rkCbNVnHbl6MyGjEv4=",
+    "last_login": "2025-03-03T21:27:43.437Z",
+    "is_superuser": false,
+    "username": "LiamFlynnTwo",
+    "first_name": "Liam",
+    "last_name": "Flynn",
+    "email": "liam.flynn@zyrofisher.co.uk",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-12-02T20:34:59.405Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 40,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$8JQy6ISMWjI6WZ08IvOQWd$+pTvlVPBkIQxiBEzXsA09lqhPw7xoBC2becoEtmLZSg=",
+    "last_login": "2025-03-04T10:50:39.504Z",
+    "is_superuser": false,
+    "username": "LiamFlynnThree",
+    "first_name": "Sarah",
+    "last_name": "Coulson",
+    "email": "liam_flea@hotmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-03-03T21:36:44.197Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

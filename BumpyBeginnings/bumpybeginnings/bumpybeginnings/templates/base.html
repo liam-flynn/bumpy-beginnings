@@ -1,0 +1,51 @@
+{% include "./header.html" %}
+{% include "./title.html" %}
+{% include "./breadcrumbs.html" %}
+    <div>
+
+        {% block content %}Didn't render content{% endblock %}
+    </div>
+
+{% include "./footer.html" %}
+
+<style>
+    .prose ul {
+        list-style-type: disc; 
+        padding-left: 20px;    
+    }
+    .prose ol {
+        list-style-type: decimal; 
+        padding-left: 20px;      
+    }
+    
+    .prose li {
+        margin-bottom: 5px; 
+    }
+    
+    </style>
+
+
+
+
+<script>
+
+    // Toggle the notifications dropdown when clicking the button
+    document.addEventListener('DOMContentLoaded', () => {
+        const notifButton = document.getElementById('notification-button');
+        const notifDropdown = document.getElementById('notification-dropdown');
+
+        if (notifButton && notifDropdown) {
+
+            notifButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                notifDropdown.classList.toggle('hidden');
+            });
+
+            document.addEventListener('click', function() {
+                if (!notifDropdown.classList.contains('hidden')) {
+                    notifDropdown.classList.add('hidden');
+                }
+            });
+        }
+    });
+</script>

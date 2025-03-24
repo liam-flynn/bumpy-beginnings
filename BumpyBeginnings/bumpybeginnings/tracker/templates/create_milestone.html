@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto px-4">
+    <h2 class="text-2xl font-semibold text-sky-900 mb-4">Create a New Development Milestone</h2>
+    <form method="post" enctype="multipart/form-data" class="space-y-4">
+        {% csrf_token %}
+        {{ form.media }}
+
+
+        {% if form.non_field_errors %}
+            <div class="space-y-2">
+                <p class="text-red-600 text-sm">{{ form.non_field_errors|join:", " }}</p>
+            </div>
+        {% endif %}
+
+
+        <div class="space-y-2">
+            <label for="id_stage" class="block text-sm font-medium text-gray-700">Stage</label>
+            {{ form.stage }}
+            {% if form.stage.errors %}
+                <p class="text-red-600 text-sm">{{ form.stage.errors|join:", " }}</p>
+            {% endif %}
+        </div>
+
+        <div class="space-y-2" id="week-field">
+            <label for="id_week" class="block text-sm font-medium text-gray-700">Pregnancy Week</label>
+            {{ form.week }}
+            {% if form.week.errors %}
+                <p class="text-red-600 text-sm">{{ form.week.errors|join:", " }}</p>
+            {% endif %}
+        </div>
+
+
+        <div class="space-y-2" id="start-age-months-field">
+            <label for="id_start_age_months" class="block text-sm font-medium text-gray-700">Start Age (Months)</label>
+            {{ form.start_age_months }}
+            {% if form.start_age_months.errors %}
+                <p class="text-red-600 text-sm">{{ form.start_age_months.errors|join:", " }}</p>
+            {% endif %}
+        </div>
+
+
+        <div class="space-y-2" id="end-age-months-field">
+            <label for="id_end_age_months" class="block text-sm font-medium text-gray-700">End Age (Months)</label>
+            {{ form.end_age_months }}
+            {% if form.end_age_months.errors %}
+                <p class="text-red-600 text-sm">{{ form.end_age_months.errors|join:", " }}</p>
+            {% endif %}
+        </div>
+
+
+        <div>
+            <label for="id_description" class="block text-sm font-medium text-gray-700">Description</label>
+            {{ form.description }}
+            {% if form.description.errors %}
+                <p class="text-red-600 text-sm">{{ form.description.errors|join:", " }}</p>
+            {% endif %}
+        </div>
+
+
+        <div class="space-y-2">
+            <label for="id_image" class="block text-sm font-medium text-gray-700">Upload Image</label>
+            {{ form.image }}
+            {% if form.image.errors %}
+                <p class="text-red-600 text-sm">{{ form.image.errors|join:", " }}</p>
+            {% endif %}
+        </div>
+
+
+        <button type="submit" class="w-full py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition duration-200">
+            Submit
+        </button>
+    </form>
+</div>
+
+<script>
+    // Dynamic field visibility based on selected stage
+    document.addEventListener('DOMContentLoaded', function () {
+        const stageField = document.querySelector('#id_stage');
+        const weekField = document.getElementById('week-field');
+        const startAgeField = document.getElementById('start-age-months-field');
+        const endAgeField = document.getElementById('end-age-months-field');
+
+        function toggleFields() {
+            if (stageField.value === 'prenatal') {
+                weekField.style.display = '';
+                startAgeField.style.display = 'none';
+                endAgeField.style.display = 'none';
+            } else if (stageField.value === 'postnatal') {
+                weekField.style.display = 'none';
+                startAgeField.style.display = '';
+                endAgeField.style.display = '';
+            } else {
+                weekField.style.display = 'none';
+                startAgeField.style.display = 'none';
+                endAgeField.style.display = 'none';
+            }
+        }
+
+        // Initialize field visibility
+        toggleFields();
+
+        // Update fields on stage change
+        stageField.addEventListener('change', toggleFields);
+    });
+</script>
+
+{% endblock %}

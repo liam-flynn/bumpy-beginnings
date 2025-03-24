@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mx-auto px-4">
+  <h1 class="text-2xl font-bold mb-4">Eligibility Questionnaire</h1>
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-4">
+      <label for="residency" class="block text-sm font-medium text-gray-700">
+         Do you live in the UK?
+      </label>
+      <div class="mt-1">
+        <label>
+          <input type="radio" name="residency" value="true" class="mr-2" required> Yes
+        </label>
+        <label>
+          <input type="radio" name="residency" value="false" class="ml-4 mr-2" required> No
+        </label>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="salary" class="block text-sm font-medium text-gray-700">
+         What is your annual salary?
+      </label>
+      <input type="number" step="any" name="salary" id="salary" class="mt-1 block w-full rounded-md p-2 border-gray-300 shadow-sm focus:ring focus:ring-sky-500" placeholder="Enter your salary">
+    </div>
+
+    {% for group, criteria in grouped_criteria.items %}
+      <h2 class="text-xl font-semibold mt-6 mb-2 underline">{{ group }}</h2>
+      {% for criterion in criteria %}
+        <div class="mb-4">
+          <label for="criterion_{{ criterion.id }}" class="block text-sm font-medium text-gray-700">
+            {{ criterion.description }}
+          </label>
+          {% if criterion.value_type == "boolean" %}
+            <div class="mt-1">
+              <label>
+                <input type="radio" name="criterion_{{ criterion.id }}" value="true" class="mr-2"> Yes
+              </label>
+              <label>
+                <input type="radio" name="criterion_{{ criterion.id }}" value="false" class="ml-4 mr-2"> No
+              </label>
+            </div>
+          {% elif criterion.value_type == "numeric" %}
+            <input
+              type="number"
+              name="criterion_{{ criterion.id }}"
+              id="criterion_{{ criterion.id }}"
+              class="mt-1 block w-full rounded-md p-2 border-gray-300 shadow-sm focus:ring focus:ring-sky-500"
+              placeholder="Enter a number"
+            >
+          {% elif criterion.value_type == "text" %}
+            <input
+              type="text"
+              name="criterion_{{ criterion.id }}"
+              id="criterion_{{ criterion.id }}"
+              class="mt-1 block w-full rounded-md p-2 border-gray-300 shadow-sm focus:ring focus:ring-sky-500"
+              placeholder="Enter a value"
+            >
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% endfor %}
+
+    <button
+      type="submit"
+      class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+    >
+      Submit
+    </button>
+  </form>
+</div>
+{% endblock %}

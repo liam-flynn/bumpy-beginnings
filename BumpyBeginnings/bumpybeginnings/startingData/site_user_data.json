@@ -1,0 +1,79 @@
+[
+{
+  "model": "users.siteuser",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "isMother": false,
+    "dueDate": "2025-03-24",
+    "partnerName": "Sarah",
+    "isForumMod": false
+  }
+},
+{
+  "model": "users.siteuser",
+  "pk": 2,
+  "fields": {
+    "user": 35,
+    "isMother": true,
+    "dueDate": "2025-03-24",
+    "partnerName": "Liam",
+    "isForumMod": false
+  }
+},
+{
+  "model": "users.siteuser",
+  "pk": 3,
+  "fields": {
+    "user": 38,
+    "isMother": true,
+    "dueDate": "2024-03-24",
+    "partnerName": "Sarah",
+    "isForumMod": true
+  }
+},
+{
+  "model": "users.siteuser",
+  "pk": 4,
+  "fields": {
+    "user": 39,
+    "isMother": true,
+    "dueDate": "2025-03-24",
+    "partnerName": "Sarah",
+    "isForumMod": false
+  }
+},
+{
+  "model": "users.siteuser",
+  "pk": 5,
+  "fields": {
+    "user": 36,
+    "isMother": false,
+    "dueDate": "2025-02-24",
+    "partnerName": "Sarah",
+    "isForumMod": true
+  }
+},
+{
+  "model": "users.siteuser",
+  "pk": 6,
+  "fields": {
+    "user": 37,
+    "isMother": true,
+    "dueDate": "2025-03-24",
+    "partnerName": "Sarah",
+    "isForumMod": false
+  }
+},
+{
+  "model": "users.siteuser",
+  "pk": 10,
+  "fields": {
+    "user": 40,
+    "isMother": true,
+    "dueDate": "2025-03-24",
+    "partnerName": "Sarah",
+    "isForumMod": false
+  }
+}
+]

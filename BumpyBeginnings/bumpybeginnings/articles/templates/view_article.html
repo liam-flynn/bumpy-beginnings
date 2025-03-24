@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto px-4 flex flex-col items-center w-full max-w-3xl">
+    <div class="w-full p-6 bg-white shadow-md rounded-lg">
+        {% if article.image %}
+        <div class="article-image flex justify-center mb-4">
+            <img src="{{ article.image.url }}" alt="{{ article.title }}" class="w-full rounded-lg shadow">
+        </div>
+        {% endif %}
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 my-2 text-center">{{ article.title }}</h1>
+        {% if article.subtitle %}
+        <h2 class="text-lg sm:text-xl text-gray-600 my-3 text-center">{{ article.subtitle }}</h2>
+        {% endif %}
+        <div class="prose max-w-full">
+            {{ article_text|safe }}
+        </div>
+
+        {% if article.source %}
+        <p class="mt-6 text-gray-700 text-sm sm:text-base"><strong>Source: </strong>
+            <a href="{{ article.source }}" class="text-blue-600 hover:underline" target="_blank">
+                {{ article.source }}
+            </a>
+        </p>
+        {% endif %}
+        <p class="mt-4 text-gray-600 text-sm sm:text-base"><strong>Week: </strong>{{ article.related_week }}</p>
+
+        {% if user.is_staff %}
+        <div class="mt-6 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
+            <a href="{% url 'edit_article' article.id %}" 
+                class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                Edit Article
+            </a>
+            <a href="{% url 'articles' %}" 
+                class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition">
+                Back to Articles
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+
+    .prose p {
+      margin-bottom: 1.5rem;
+    }
+  </style>
+{% endblock %}

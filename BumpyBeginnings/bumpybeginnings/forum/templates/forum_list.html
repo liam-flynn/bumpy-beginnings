@@ -1,0 +1,65 @@
+{% extends "base.html" %} {% block content %}
+<div class="container mx-auto px-4">
+
+  <h1 class="text-3xl font-bold text-sky-900 mb-6">Forums</h1>
+
+  {% if user.is_staff %}
+  <div class="mb-4">
+    <a
+      href="{% url 'create_forum' %}"
+      class="inline-block px-4 py-2 bg-green-600 text-white rounded-lg shadow-lg hover:bg-green-700 transition-all duration-200"
+    >
+      Create New Forum
+    </a>
+  </div>
+  {% endif %}
+
+  <ul class="forum-list space-y-4">
+    {% for forum in object_list %}
+    <li>
+      {% if user.is_staff %}
+        <div class="block p-6 shadow rounded-lg border border-gray-200 {% if forum.isLive %}bg-green-50 border-green-200{% else %}bg-red-50 border-red-200{% endif %}">
+          <div class="flex justify-between items-center">
+
+            <div class="flex-1 pr-4">
+              <a href="{% url 'forum_detail' forum.pk %}" class="text-xl font-semibold text-sky-700 hover:text-sky-900 transition duration-200">
+                {{ forum.forumName }}
+              </a>
+              <p class="text-gray-600 mt-2">{{ forum.description|safe }}</p>
+            </div>
+ 
+            <div class="flex flex-col items-end space-y-2">
+              <div class="flex space-x-2">
+                {% if forum.isLive %}
+                  <a href="{% url 'deactivate_forum' forum.id %}" class="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600">
+                    Deactivate
+                  </a>
+                {% else %}
+                  <a href="{% url 'reactivate_forum' forum.id %}" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">
+                    Reactivate
+                  </a>
+                {% endif %}
+                <a href="{% url 'delete_forum' forum.id %}" class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600" onclick="return confirm('Are you sure you want to delete this forum?');">
+                  Delete
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <a href="{% url 'forum_detail' forum.pk %}" class="block p-6 shadow rounded-lg border border-gray-200 {% if forum.isLive %}bg-green-50 border-green-200{% else %}bg-red-50 border-red-200{% endif %}">
+          <div class="flex justify-between items-center">
+            <div class="flex-1 pr-4">
+              <h2 class="text-xl font-semibold text-sky-700 hover:text-sky-900 transition duration-200">
+                {{ forum.forumName }}
+              </h2>
+              <p class="text-gray-600 mt-2">{{ forum.description|safe }}</p>
+            </div>
+          </div>
+        </a>
+      {% endif %}
+    </li>
+  {% endfor %}
+  </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends "base.html" %} 
+{% block content %}
+<div class="container mx-auto px-4">
+  <h1 class="text-3xl font-bold text-gray-800 mb-6">
+    Edit Eligibility Criteria for {{ criteria.benefit.name }}
+  </h1>
+  <div class="p-6 bg-white shadow rounded-lg">
+    <form method="post">
+      {% csrf_token %} {{ form.media }}
+      <div class="space-y-2">
+        <label
+          for="{{ criteria_form.benefit.id_for_label }}"
+          class="block text-sm font-medium text-gray-700"
+          >Benefit</label
+        >
+        {{ form.benefit }}
+      </div>
+      <div class="space-y-2">
+        <label
+          for="{{ criteria_form.criterion.id_for_label }}"
+          class="block text-sm font-medium text-gray-700"
+          >Criterion</label
+        >
+        {{ form.criterion }}
+      </div>
+      <div class="space-y-2">
+        <label
+          for="{{ criteria_form.description.id_for_label }}"
+          class="block text-sm font-medium text-gray-700"
+          >Description</label
+        >
+        {{ form.description }}
+      </div>
+      <div class="space-y-2">
+        <label
+          for="{{ criteria_form.value_type.id_for_label }}"
+          class="block text-sm font-medium text-gray-700"
+          >Value Type</label
+        >
+        {{ form.value_type }}
+      </div>
+      <div class="space-y-2">
+        <label
+          for="{{ criteria_form.match_type.id_for_label }}"
+          class="block text-sm font-medium text-gray-700"
+          >Match Type</label
+        >
+        {{ form.match_type }}
+      </div>
+      <div class="space-y-2" id="criteria-value-field-wrapper">
+        <label
+          for="{{ criteria_form.value.id_for_label }}"
+          class="block text-sm font-medium text-gray-700"
+          >Value</label
+        >
+        <div id="criteria-value-field-container">{{ form.value }}</div>
+      </div>
+      <button
+        type="submit"
+        name="submit_criteria"
+        class="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-200"
+      >
+        Add Criteria
+      </button>
+      <a href="{% url 'benefit_list' %}" class="ml-4 text-blue-600 hover:underline">Cancel</a>
+    </form>
+  </div>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const valueTypeField = document.getElementById("id_value_type");
+    const matchTypeField = document.getElementById("id_match_type");
+    const valueFieldWrapper = document.getElementById(
+      "criteria-value-field-wrapper"
+    );
+    const valueFieldContainer = document.getElementById(
+      "criteria-value-field-container"
+    );
+
+    function updateValueField() {
+      const selectedValueType = valueTypeField.value;
+      const selectedMatchType = matchTypeField.value;
+
+      if (selectedMatchType === "none") {
+        valueFieldWrapper.style.display = "none";
+        while (valueFieldContainer.firstChild) {
+          valueFieldContainer.removeChild(valueFieldContainer.firstChild);
+        }
+      } else {
+        valueFieldWrapper.style.display = "block";
+        while (valueFieldContainer.firstChild) {
+          valueFieldContainer.removeChild(valueFieldContainer.firstChild);
+        }
+        if (selectedValueType === "boolean") {
+          const select = document.createElement("select");
+          select.name = "value";
+          select.id = "id_value";
+          select.className =
+            "rounded-lg shadow-sm border border-gray-200 py-2 px-4 w-full focus:ring-2 focus:ring-sky-500";
+          select.removeAttribute("required");
+          const trueOption = document.createElement("option");
+          trueOption.value = "True";
+          trueOption.text = "True";
+          const falseOption = document.createElement("option");
+          falseOption.value = "False";
+          falseOption.text = "False";
+          select.appendChild(trueOption);
+          select.appendChild(falseOption);
+          valueFieldContainer.appendChild(select);
+        } else {
+          const input = document.createElement("input");
+          input.type = "text";
+          input.name = "value";
+          input.id = "id_value";
+          input.className =
+            "rounded-lg shadow-sm border border-gray-200 py-2 px-4 w-full focus:ring-2 focus:ring-sky-500";
+          input.placeholder = "Enter the required value or condition";
+          valueFieldContainer.appendChild(input);
+        }
+      }
+    }
+    updateValueField();
+    valueTypeField.addEventListener("change", updateValueField);
+    matchTypeField.addEventListener("change", updateValueField);
+  });
+</script>
+{% endblock %}

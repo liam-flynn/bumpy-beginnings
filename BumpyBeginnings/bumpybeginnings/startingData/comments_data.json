@@ -1,0 +1,57 @@
+[
+{
+  "model": "forum.comment",
+  "pk": 49,
+  "fields": {
+    "post": 13,
+    "commenter": 36,
+    "createdOn": "2025-02-18T21:57:03.140Z",
+    "commentText": "<p>this is new</p>",
+    "score": 0
+  }
+},
+{
+  "model": "forum.comment",
+  "pk": 81,
+  "fields": {
+    "post": 4,
+    "commenter": 1,
+    "createdOn": "2025-02-19T21:02:45.648Z",
+    "commentText": "<p>This is a good offer!</p>",
+    "score": 0
+  }
+},
+{
+  "model": "forum.comment",
+  "pk": 83,
+  "fields": {
+    "post": 4,
+    "commenter": 1,
+    "createdOn": "2025-02-19T21:07:51.084Z",
+    "commentText": "<p>this is awesome!</p>",
+    "score": 0
+  }
+},
+{
+  "model": "forum.comment",
+  "pk": 85,
+  "fields": {
+    "post": 3,
+    "commenter": 1,
+    "createdOn": "2025-02-22T14:51:35.335Z",
+    "commentText": "<p>Upvote this!</p>",
+    "score": -9
+  }
+},
+{
+  "model": "forum.comment",
+  "pk": 86,
+  "fields": {
+    "post": 3,
+    "commenter": 39,
+    "createdOn": "2025-02-22T16:01:33.840Z",
+    "commentText": "<p>This is new.</p>",
+    "score": 2
+  }
+}
+]

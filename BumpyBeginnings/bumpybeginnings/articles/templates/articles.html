@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mx-auto px-4">
+<div class="px-4 py-8 bg-white shadow-md rounded-lg">
+    <div class="mb-4">
+        <a href="{% url 'create_article' %}"
+           class="inline-block px-4 py-2 bg-green-600 text-white rounded-lg shadow-lg hover:bg-green-700 transition-all duration-200">
+           Create New Article
+        </a>
+    </div>
+    <h1 class="text-2xl font-bold text-gray-800 mb-6">Manage Articles</h1>
+
+    {% if object_list %}
+        <div class="overflow-x-auto"> <!-- Enable horizontal scrolling on smaller screens -->
+            <table class="w-full table-auto border-collapse border border-gray-300">
+                <thead>
+                    <tr class="bg-gray-100 text-gray-800">
+                        <th class="border border-gray-300 px-4 py-2 text-left">Title</th>
+                        <th class="border border-gray-300 px-4 py-2 text-left">Subtitle</th>
+                        <th class="border border-gray-300 px-4 py-2 text-left">Related Week</th>
+                        <th class="border border-gray-300 px-4 py-2 text-left">Creation Date</th>
+                        <th class="border border-gray-300 px-4 py-2 text-left">Last Updated</th>
+                        <th class="border border-gray-300 px-4 py-2 text-left">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for article in object_list %}
+                        <tr class="hover:bg-gray-50">
+                            <td class="border border-gray-300 px-4 py-2">{{ article.title }}</td>
+                            <td class="border border-gray-300 px-4 py-2">{{ article.subtitle }}</td>
+                            <td class="border border-gray-300 px-4 py-2">{{ article.related_week }}</td>
+                            <td class="border border-gray-300 px-4 py-2">{{ article.creation_date }}</td>
+                            <td class="border border-gray-300 px-4 py-2">{{ article.last_updated }}</td>
+                            <td class="border border-gray-300 px-4 py-2">
+                                <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
+                                    <a href="{% url 'delete_article' article.id %}" class="text-indigo-600 hover:underline"
+                                    onclick="return confirm('Are you sure you want to delete this article?');">
+                                        Delete
+                                    </a>
+                                    <a href="{% url 'edit_article' article.id %}" class="text-indigo-600 hover:underline">
+                                        Edit
+                                    </a>
+                                    <a href="{% url 'view_article' article.id %}" class="text-indigo-600 hover:underline">
+                                        View
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="text-gray-600">No articles found.</p>
+    {% endif %}
+</div>
+{% endblock %}
+</div>

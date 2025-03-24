@@ -1,0 +1,264 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container mx-auto px-4">
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-sky-900">{{ post.postTitle }}</h1>
+    <div class="prose post-text">
+      <p class="text-lg text-gray-600 mt-2 prose post-text">
+        {{ post.postText | safe }}
+      </p>
+    </div>
+    <p class="text-sm text-gray-500 mt-2">
+      By <strong>{{ post.poster.username }}</strong> on {{ post.createdOn }}
+    </p>
+  </div>
+
+  <div class="mt-8">
+    <h2 class="text-2xl font-semibold text-sky-900 mb-4">Comments</h2>
+
+    <p>{{user_votes}}</p>
+
+    <ul class="comments space-y-6">
+      {% for comment in comments %}
+      <li class="p-6 bg-white shadow rounded-lg border border-gray-200">
+        <div class="flex justify-between items-start">
+          <div>
+            <p class="text-sm font-semibold text-gray-800">
+              {{ comment.commenter.username }} on {{ comment.createdOn }}
+            </p>
+            <p class="mt-2 text-gray-700">{{ comment.commentText|safe }}</p>
+          </div>
+
+          {% if request.user != comment.commenter and not user.is_staff and not user.siteuser.isForumMod %}
+          <div class="mt-4 flex space-x-4">
+            <button
+              id="upvote-button-{{ comment.id }}"
+              onclick="vote('{{ comment.id }}', 'upvote'); toggleVote('upvote', 'downvote', this, '{{ comment.id }}');"
+              class="px-4 py-2 rounded-md transition duration-200 bg-gray-200 text-black hover:bg-green-600 hover:text-white"
+            >
+              <svg
+                height="16px"
+                version="1.1"
+                viewBox="0 0 16 16"
+                width="16px"
+                id="upvote-icon-{{ comment.id }}"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <title />
+                <defs />
+                <g
+                  fill="none"
+                  fill-rule="evenodd"
+                  id="Icons with numbers"
+                  stroke="none"
+                  stroke-width="1"
+                >
+                  <g
+                    fill="#000000"
+                    id="Group"
+                    transform="translate(0.000000, -96.000000)"
+                  >
+                    <path
+                      d="M11,102 L11,112 L5,112 L5,102 L2,102 L8,96 L14,102 L11,102 L11,102 Z M11,102"
+                      id="Shape"
+                    />
+                  </g>
+                </g>
+              </svg>
+            </button>
+            <p class="mt-2 text-sm text-gray-600">
+              Score:
+              <span id="score-{{ comment.id }}" class="font-semibold"
+                >{{ comment.score }}</span
+              >
+            </p>
+            <button
+              id="downvote-button-{{ comment.id }}"
+              onclick="vote('{{ comment.id }}', 'downvote'); toggleVote('downvote', 'upvote', this, '{{ comment.id }}');"
+              class="px-4 py-2 rounded-md transition duration-200 bg-gray-200 text-black hover:bg-red-600 hover:text-white"
+            >
+              <svg
+                height="16px"
+                version="1.1"
+                viewBox="0 0 16 16"
+                width="16px"
+                id="downvote-icon-{{ comment.id }}"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <title />
+                <defs />
+                <g
+                  fill="none"
+                  fill-rule="evenodd"
+                  id="Icons with numbers"
+                  stroke="none"
+                  stroke-width="1"
+                >
+                  <g
+                    fill="#000000"
+                    id="Group"
+                    transform="translate(-48.000000, -96.000000)"
+                  >
+                    <path
+                      d="M59,106 L59,96 L53,96 L53,106 L50,106 L56,112 L62,106 L59,106 L59,106 Z M59,106"
+                      id="Shape"
+                    />
+                  </g>
+                </g>
+              </svg>
+            </button>
+          </div>
+          {% else %}
+          <div class="mt-4 flex items-center justify-end space-x-4">
+            <p class="text-sm text-gray-600">
+              Score:
+              <span id="score-{{ comment.id }}" class="font-semibold"
+                >{{ comment.score }}</span
+              >
+            </p>
+            {% if user.is_staff or user.siteuser.isForumMod or user == comment.commenter %}
+            <form
+              method="post"
+              action="{% url 'delete_comment' comment.pk %}"
+              class="inline"
+            >
+              {% csrf_token %}
+              <button
+                type="submit"
+                class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:ring-2 focus:ring-red-500 transition-all duration-200"
+                onclick="return confirm('Are you sure you want to delete this comment?');"
+              >
+                Delete
+              </button>
+            </form>
+            {% endif %}
+          </div>
+          {% endif %}
+        </div>
+      </li>
+      {% empty %}
+      <li class="text-gray-500">No comments yet. Be the first to comment!</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="mt-8">
+    <h2 class="text-2xl font-semibold text-sky-900 mb-4">Leave a Comment</h2>
+    <form method="post" class="space-y-4">
+      {% csrf_token %} {{ form.media }}
+      <div class="space-y-2">
+        <label
+          for="id_commentText"
+          class="block text-sm font-medium text-gray-700"
+          >Your Comment</label
+        >
+        {{ form.commentText }}
+      </div>
+      <button
+        type="submit"
+        class="w-full py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition duration-200"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  function vote(commentId, action) {
+    // url to hit vote view code.
+    // help from https://www.youtube.com/watch?v=lc1sOvRaFpg
+    const url = `/forums/comment/${commentId}/${action}/`;
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "X-CSRFToken": "{{ csrf_token }}",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          alert(data.error);
+        } else {
+          document.getElementById(`score-${commentId}`).innerText = data.score;
+        }
+      });
+  }
+  
+
+  // parse the JSON string from the server
+  const userVotes = JSON.parse("{{ user_votes_json | escapejs }}");
+
+  // Once the page has loaded, update the vote buttons based on the user's previous votes
+  document.addEventListener("DOMContentLoaded", () => {
+    // get the upvote/downvote buttons and their icons for the comment
+    for (const [commentId, voteType] of Object.entries(userVotes)) {
+      const upvoteButtton = document.querySelector(`#upvote-button-${commentId}`);
+      const downvoteButton = document.querySelector(`#downvote-button-${commentId}`);
+      const upvoteIcon = document.querySelector(`#upvote-icon-${commentId}`);
+      const downvoteIcon = document.querySelector(`#downvote-icon-${commentId}`);
+
+      // if the user has already votes previously, apply appropriate styling
+      if (voteType === "upvote") {
+        upvoteButtton.classList.add("bg-green-600", "text-white");
+        upvoteIcon.classList.add("text-white");
+      } else if (voteType === "downvote") {
+        downvoteButton.classList.add("bg-red-600", "text-white");
+        downvoteIcon.classList.add("text-white");
+      }
+    }
+  });
+
+  // used to swap votes from one type to anotyher
+  function toggleVote(clickedType, otherType, clickedButton, commentId) {
+
+    // "other button" being downvote on a upvote button and viseversa
+    const otherButtonId = `${otherType}-button-${commentId}`;
+    const otherButton = document.getElementById(otherButtonId);
+
+    // check if the button is active. it will have either of the two classes below
+    const isButtonActive =
+      clickedButton.classList.contains("bg-green-600") ||
+      clickedButton.classList.contains("bg-red-600");
+
+    // if it is already active, remove these classes once ticked i.e. deactivating it 
+    if (isButtonActive) {
+      clickedButton.classList.remove(
+        "bg-green-600",
+        "bg-red-600",
+        "text-white"
+      );
+      otherButton.classList.remove("bg-green-600", "bg-red-600", "text-white");
+    } 
+    // if it is not active, add the styling to this button and also remove styling from the alternating button
+    else {
+      if (clickedType === "upvote") {
+        clickedButton.classList.add("bg-green-600", "text-white");
+        otherButton.classList.remove("bg-red-600", "text-white");
+      } else if (clickedType === "downvote") {
+        clickedButton.classList.add("bg-red-600", "text-white");
+        otherButton.classList.remove("bg-green-600", "text-white");
+      }
+    }
+  }
+</script>
+<style>
+  .post-text ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  .post-text ol {
+    list-style-type: decimal;
+    padding-left: 20px;
+  }
+
+  .post-text li {
+    margin-bottom: 5px;
+  }
+</style>
+
+{% endblock %}

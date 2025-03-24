@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto px-4 flex flex-col items-center w-max">
+    <div class="p-6 bg-white shadow-md rounded-lg w-96">
+        {% if milestone.image %}
+        <div class="milestone-image">
+            <img src="{{ milestone.image.url }}" class="w-full rounded-lg shadow max-w-2xl">
+        </div>
+        {% endif %}
+        {% if milestone.week %}
+            <h1 class="text-3xl font-bold text-gray-800 my-2 text-center">Week {{ milestone.week }}</h1>
+        {% else %}
+            <h1 class="text-3xl font-bold text-gray-800 my-2 text-center">
+                {{ milestone.start_age_months }} - {{ milestone.end_age_months }} Months
+            </h1>
+        {% endif %}
+        <div class="prose break-words">
+            {{ milestone.description|safe }}
+        </div>
+
+        {% if user.is_staff %}
+        {% block staff_extras %}
+        <div class="mt-6">
+            <a href="{% url 'edit_milestone' milestone.id %}" 
+                class="bg-blue-600 text-white px-4 py-2 mr-3 rounded-lg hover:bg-blue-700 transition">
+                Edit Article
+            </a>
+            <a href="{% url 'trackers' %}" 
+                class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition">
+                Back to Milestones
+            </a>
+        </div>
+        {% endblock %}
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock %}
+

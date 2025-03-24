@@ -1,0 +1,29 @@
+
+{% block content %}
+<div class="max-w-7xl mx-auto p-6 bg-white shadow-md rounded-lg">
+    <h1 class="text-2xl font-bold text-sky-900 mb-6">Articles for Week {{ pregnancy_week }}</h1>
+
+    {% if articles %}
+        <div class="space-y-4">
+            {% for article in articles %}
+                <div class="p-4 border border-gray-200 shadow-sm rounded-lg hover:shadow-md transition">
+                    <h2 class="text-lg font-semibold text-sky-600">
+                        <a href="{% url 'view_article' article.id %}" class="hover:underline">
+                            {{ article.title }}
+                        </a>
+                    </h2>
+                    {% if article.subtitle %}
+                        <p class="text-sm text-gray-600">{{ article.subtitle }}</p>
+                    {% endif %}
+                    {% if article.related_week %}
+                        <p class="text-sm text-gray-500">Related Week: {{ article.related_week }}</p>
+                    {% endif %}
+                    <p class="text-sm text-gray-500">Last updated: {{ article.last_updated|date:"F j, Y" }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-gray-600">No articles available for your current pregnancy week.</p>
+    {% endif %}
+</div>
+{% endblock %}

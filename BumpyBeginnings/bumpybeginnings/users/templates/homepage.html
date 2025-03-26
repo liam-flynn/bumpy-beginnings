@@ -3,7 +3,7 @@
 {% block content %}
     {% if user.is_authenticated %}
         {% if not user.is_staff %}
-        <div class="mx-auto" style="max-width: 80%;">
+        <div class="mx-auto flex justify-center">
             <div class="flex flex-col md:flex-row">
 
                 <div id="milestone-container"
@@ -18,7 +18,7 @@
                     hx-get="{% url 'user_articles' %}"
                     hx-trigger="load"
                     hx-swap="innerHTML"
-                    class="flex-1 p-6 bg-white shadow-md rounded-lg">
+                    class="p-2 flex-1 md:p-6">
                 </div>
             </div>
         </div>

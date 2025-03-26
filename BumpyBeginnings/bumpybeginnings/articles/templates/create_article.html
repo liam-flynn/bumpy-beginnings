@@ -1,53 +1,71 @@
-{% extends "base.html" %}
-
-{% block content %}
-<div class="container mx-auto px-4">
-        <h2 class="text-2xl font-semibold text-sky-900 mb-4">Create a New Article</h2>
-        <form method="post" enctype="multipart/form-data" class="space-y-4">
-            {% csrf_token %}
-            {{ form.media }}
-            <div class="space-y-2">
-                <label for="id_title" class="block text-sm font-medium text-gray-700">Article Title</label>
-                {{ form.title }}
-                {% if form.title.errors %}
-                    <p class="text-red-600 text-sm">{{ form.title.errors|join:", " }}</p>
-                {% endif %}
-                {% if form.non_field_errors %}
-                <div class="space-y-2">
-                    <p class="text-red-600 text-sm">{{ form.non_field_errors|join:", " }}</p>
-                </div>
-            {% endif %}
-            </div>
-            <div class="space-y-2">
-                <label for="id_subtitle" class="block text-sm font-medium text-gray-700">Article Subtitle</label>
-                {{ form.subtitle }}
-            </div>
-            <div>
-                <label for="id_text" class="block text-sm font-medium text-gray-700">Content <br>Note: For a customised article, place instances of 'you' and 'your' in double brackets i.e. {% templatetag openvariable %} you {% templatetag closevariable %}. This will automatically adjust for users providing support to mothers.<br>
-                Example: {% templatetag openvariable %} You {% templatetag closevariable %} may be struggling with morning sickness. {% templatetag openvariable %} Your {% templatetag closevariable %} appatite may change.<br>
-                Mother: You may be struggling with morning sickness. Your appatite may change.<br>
-                Father: Sarah may be struggling with morning sickness. Sarah's appatite may change.<br>
-            </label>
-                {{ form.text }}
-                {% if form.text.errors %}
-                    <p class="text-red-600 text-sm">{{ form.text.errors|join:", " }}</p>
-                {% endif %}
-            </div>
-            <div class="space-y-2">
-                <label for="id_source" class="block text-sm font-medium text-gray-700">Article Source</label>
-                {{ form.source}}
-            </div>
-            <div class="space-y-2">
-                <label for="id_week" class="block text-sm font-medium text-gray-700">Article Relates Development Week </label>
-                {{ form.related_week}}
-            </div>
-            <div class="space-y-2">
-                <label for="id_image" class="block text-sm font-medium text-gray-700">Upload Image</label>
-                {{ form.image }}
-            </div>
-            <button type="submit" class="w-full py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition duration-200">
-                Submit
-            </button>
-        </form>
+{% extends "base.html" %} {% block content %}
+<div class="container mx-auto p-6">
+  <h2 class="text-2xl font-semibold text-sky-900 mb-4">Create a New Article</h2>
+  <form
+    method="post"
+    enctype="multipart/form-data"
+    class="space-y-4 bg-sky-50 p-6 shadow rounded-lg"
+  >
+    {% csrf_token %} {{ form.media }}
+    <div class="space-y-2">
+      <label for="id_title" class="block text-lg font-medium text-gray-700"
+        >Article Title</label
+      >
+      {{ form.title }} {% if form.title.errors %}
+      <p class="text-red-600 text-sm">{{ form.title.errors|join:", " }}</p>
+      {% endif %} {% if form.non_field_errors %}
+      <div class="space-y-2">
+        <p class="text-red-600 text-sm">
+          {{ form.non_field_errors|join:", " }}
+        </p>
+      </div>
+      {% endif %}
+    </div>
+    <div class="space-y-2">
+      <label for="id_subtitle" class="block text-lg font-medium text-gray-700"
+        >Article Subtitle</label
+      >
+      {{ form.subtitle }}
+    </div>
+    <div>
+      <label for="id_text" class="block text-lg font-medium text-gray-700"
+        >Content <br />Note: For a customised article, place instances of 'you'
+        and 'your' in double brackets i.e. {% templatetag openvariable %} you {% templatetag closevariable %}. This will automatically adjust for users
+        providing support to mothers.<br />
+        Example: {% templatetag openvariable %} You {% templatetag closevariable %} may be struggling with morning sickness. {% templatetag openvariable %} Your {% templatetag closevariable %} appatite may change.<br />
+        Mother: You may be struggling with morning sickness. Your appatite may
+        change.<br />
+        Father: Sarah may be struggling with morning sickness. Sarah's appatite
+        may change.<br />
+      </label>
+      {{ form.text }} {% if form.text.errors %}
+      <p class="text-red-600 text-sm">{{ form.text.errors|join:", " }}</p>
+      {% endif %}
+    </div>
+    <div class="space-y-2">
+      <label for="id_source" class="block text-sm font-medium text-gray-700"
+        >Article Source</label
+      >
+      {{ form.source}}
+    </div>
+    <div class="space-y-2">
+      <label for="id_week" class="block text-sm font-medium text-gray-700"
+        >Article Relates Development Week
+      </label>
+      {{ form.related_week}}
+    </div>
+    <div class="space-y-2">
+      <label for="id_image" class="block text-sm font-medium text-gray-700"
+        >Upload Image</label
+      >
+      {{ form.image }}
+    </div>
+    <button
+      type="submit"
+      class="w-full py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition duration-200"
+    >
+      Submit
+    </button>
+  </form>
 </div>
 {% endblock %}

@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container mx-auto px-4">
-  <h1 class="text-3xl font-bold text-gray-800 mb-6">Create New Benefit</h1>
-  <div class="p-6 bg-white shadow rounded-lg">
+<div class="container mx-auto p-6">
+  <h1 class="text-3xl font-bold text-sky-900 mb-6">Create New Benefit</h1>
+  <div class="p-6 bg-sky-50 shadow rounded-lg">
     <form method="post">
       {% csrf_token %}
       {{ benefit_form.media }}

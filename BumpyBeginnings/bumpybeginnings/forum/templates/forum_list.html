@@ -18,7 +18,7 @@
     {% for forum in object_list %}
     <li>
       {% if user.is_staff %}
-        <div class="block p-6 shadow rounded-lg border border-gray-200 {% if forum.isLive %}bg-green-50 border-green-200{% else %}bg-red-50 border-red-200{% endif %}">
+        <div class="block p-6 shadow rounded-lg border border-gray-200 bg-gray-50 {% if forum.isLive and user.is_staff %}bg-green-50 border-green-200 {% elif not forum.isLive and user.is_staff %}bg-red-50 border-red-200{% endif %}">
           <div class="flex justify-between items-center">
 
             <div class="flex-1 pr-4">
@@ -47,10 +47,10 @@
           </div>
         </div>
       {% else %}
-        <a href="{% url 'forum_detail' forum.pk %}" class="block p-6 shadow rounded-lg border border-gray-200 {% if forum.isLive %}bg-green-50 border-green-200{% else %}bg-red-50 border-red-200{% endif %}">
-          <div class="flex justify-between items-center">
+        <a href="{% url 'forum_detail' forum.pk %}" class="block p-6 shadow rounded-lg border border-gray-200 bg-sky-100 transition hover:border-gray-300 hover:bg-gray-50">
+          <div class="flex justify-between items-center ">
             <div class="flex-1 pr-4">
-              <h2 class="text-xl font-semibold text-sky-700 hover:text-sky-900 transition duration-200">
+              <h2 class="text-xl font-semibold text-sky-700 hover:text-sky-900">
                 {{ forum.forumName }}
               </h2>
               <p class="text-gray-600 mt-2">{{ forum.description|safe }}</p>

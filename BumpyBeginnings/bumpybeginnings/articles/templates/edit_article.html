@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container mx-auto px-4">
-<div class="p-6 bg-white shadow-md rounded-lg">
+<div class="container mx-auto p-6">
+
     <h1 class="text-2xl font-bold text-sky-900 mb-6">Edit Article: {{ article.title }}</h1>
 
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data" class="space-y-6 bg-sky-50 p-6 shadow rounded-lg">
         {% csrf_token %}
         {{ form.media }}
         <div class="space-y-4">
   
             <div>
-                <label for="id_title" class="block text-sm font-medium text-gray-700">Title</label>
+                <label for="id_title" class="block text-lg font-medium text-gray-700">Title</label>
                 {{ form.title }}
                 {% if form.title.errors %}
                     <p class="text-red-600 text-sm">{{ form.title.errors|join:", " }}</p>
@@ -20,12 +20,12 @@
 
 
             <div>
-                <label for="id_subtitle" class="block text-sm font-medium text-gray-700">Subtitle</label>
+                <label for="id_subtitle" class="block text-lg font-medium text-gray-700">Subtitle</label>
                 {{ form.subtitle }}
             </div>
 
             <div>
-                <label for="id_text" class="block text-sm font-medium text-gray-700">Content <br>Note: For a customised article, place instances of 'you' and 'your' in double brackets i.e. {% templatetag openvariable %} you {% templatetag closevariable %}. This will automatically adjust for users providing support to mothers.<br>
+                <label for="id_text" class="block text-lg font-medium text-gray-700">Content <br>Note: For a customised article, place instances of 'you' and 'your' in double brackets i.e. {% templatetag openvariable %} you {% templatetag closevariable %}. This will automatically adjust for users providing support to mothers.<br>
                     Example: {% templatetag openvariable %} You {% templatetag closevariable %} may be struggling with morning sickness. {% templatetag openvariable %} Your {% templatetag closevariable %} appatite may change.<br>
                     Mother: You may be struggling with morning sickness. Your appatite may change.<br>
                     Father: Sarah may be struggling with morning sickness. Sarah's appatite may change.<br>
@@ -37,16 +37,16 @@
             </div>
 
             <div>
-                <label for="id_source" class="block text-sm font-medium text-gray-700">Source</label>
+                <label for="id_source" class="block text-lg font-medium text-gray-700">Source</label>
                 {{ form.source }}
             </div>
 
             <div>
-                <label for="id_related_week" class="block text-sm font-medium text-gray-700">Related Week</label>
+                <label for="id_related_week" class="block text-lg font-medium text-gray-700">Related Week</label>
                 {{ form.related_week }}
             </div>
             <div>
-                <label for="id_image" class="block text-sm font-medium text-gray-700">Upload Image</label>
+                <label for="id_image" class="block text-lg font-medium text-gray-700">Upload Image</label>
                 {{ form.image }}
             </div>
         </div>
@@ -62,6 +62,5 @@
             </a>
         </div>
     </form>
-</div>
 </div>
 {% endblock %}

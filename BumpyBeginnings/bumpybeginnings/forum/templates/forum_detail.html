@@ -2,26 +2,53 @@
 
 {% block content %}
 
-<div class="container mx-auto px-4">
+<div class="container mx-auto p-4">
 
   <div class="mb-6">
       <h1 class="text-3xl font-bold text-sky-900">{{ forum.forumName }}</h1>
       <p class="text-lg text-gray-600 mt-2">{{ forum.description }}</p>
   </div>
   <div class="mb-8">
-    <h2 class="text-2xl font-semibold text-sky-900 mb-4">Posts</h2>
+
+    <div class="mb-4">
+      <!-- help with button styling from https://canopas.com/20-button-effects-that-will-wow-your-users-ea415620a692 -->
+      <button id="toggle-post-form" class="bg-sky-300 w-full font-bold border border-sky-900 py-2btn shadow-[0_9px_0_rgb(0,0,0)] hover:shadow-[0_4px_0px_rgb(0,0,0)] text-black ease-out hover:translate-y-1 transition-all rounded bold">
+        Create New Post
+      </button>
+    </div>
+
+    <div class="mt-8 border-2 p-2 border-gray-300 rounded bg-sky-50 hidden" id="new-post-form">
+      <h2 class="text-2xl text-sky-900 mb-4 text-center underline font-bold">Add a New Post</h2>
+      <form method="post" class="space-y-4">
+          {% csrf_token %}
+          {{ form.media }}
+          <div class="space-y-2">
+              <label for="id_postTitle" class="block text-sm font-medium text-gray-700">Post Title</label>
+              {{ form.postTitle }}
+          </div>
+          <div class="space-y-2">
+              <label for="id_postText" class="block text-sm font-medium text-gray-700">Post Content</label>
+              {{ form.postText}}
+          </div>
+          <button type="submit" class="w-full py-2 bg-sky-600 text-white rounded-lg !mb-1 hover:bg-sky-700 transition duration-200">
+              Submit
+          </button>
+      </form>
+    </div>
+
+    <h2 class="text-3xl font-semibold text-sky-900 my-5 border-b-2 border-sky-900 pb-2">User Posts</h2>
 
     <ul class="space-y-6">
     {% for post in posts %}
-      <li class="p-6 bg-white shadow rounded-lg border border-gray-200">
-        <div class="flex justify-between items-center">
-          <div>
-            <a href="{%  url 'post_detail' forum.pk post.pk %}" class="text-2xl font-bold text-sky-900">
+      <li class="block p-6 shadow rounded-lg border border-gray-200 bg-sky-100 transition hover:border-gray-300 hover:bg-gray-50">
+        <a href="{%  url 'post_detail' forum.pk post.pk %}" class="flex justify-between items-center">
+          <div class="w-full">
+            <h3 class="text-2xl font-bold text-sky-900 text-center">
               {{ post.postTitle }}
-            </a> 
-            <p class="text-sm text-gray-500 mt-1">by {{ post.poster.username }} on {{ post.createdOn }}</p>
+            </h3> 
+            <p class="text-sm text-gray-500 mt-1 text-center">by {{ post.poster.username }} on {{ post.createdOn }}</p>
             <div class="prose post-text mt-2 text-gray-700">
-              {{ post.postText|safe }}
+              {{ post.postText|striptags }}
             </div>
           </div>
 
@@ -42,7 +69,7 @@
               </button>
             </form>
           {% endif %}
-        </div>
+      </a>
       </li>
       {% empty %}
       <li class="text-gray-500">No posts yet. Be the first to post!</li>
@@ -50,26 +77,16 @@
     </ul>
   </div>
 
-  <div class="mt-8">
-    <h2 class="text-2xl font-semibold text-sky-900 mb-4">Add a New Post</h2>
-    <form method="post" class="space-y-4">
-        {% csrf_token %}
-        {{ form.media }}
-        <div class="space-y-2">
-            <label for="id_postTitle" class="block text-sm font-medium text-gray-700">Post Title</label>
-            {{ form.postTitle }}
-        </div>
-        <div class="space-y-2">
-            <label for="id_postText" class="block text-sm font-medium text-gray-700">Post Content</label>
-            {{ form.postText}}
-        </div>
-        <button type="submit" class="w-full py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition duration-200">
-            Submit
-        </button>
-    </form>
-  </div>
+
 
 </div>
+<script>
+  // hide the form until required
+  document.getElementById('toggle-post-form').addEventListener('click', function() {
+    const formContainer = document.getElementById('new-post-form');
+    formContainer.classList.toggle('hidden');
+  });
+</script>
 
 <style>
   .post-text ul {

@@ -2,21 +2,21 @@
 
 {% block content %}
 
-<div class="container mx-auto px-4">
-<div class="px-4 py-8 bg-white shadow-md rounded-lg">
+<div class="container mx-auto p-6">
+<div class="px-4 py-8 bg-sky-50 shadow-md rounded-lg">
     <div class="mb-4">
         <a href="{% url 'create_milestone' %}"
            class="inline-block px-4 py-2 bg-green-600 text-white rounded-lg shadow-lg hover:bg-green-700 transition-all duration-200">
            Create New Milestone
         </a>
     </div>
-    <h1 class="text-2xl font-bold text-gray-800 mb-6">Manage Milestones</h1>
+    <h1 class="text-2xl font-bold text-sky-900 mb-6">Manage Milestones</h1>
 
     {% if object_list %}
         <div class="overflow-x-auto">
             <table class="w-full table-auto border-collapse border border-gray-300">
                 <thead>
-                    <tr class="bg-gray-100 text-gray-800">
+                    <tr class="bg-sky-300 text-sky-900">
                         <th class="border border-gray-300 px-4 py-2 text-left">Time Period</th>
                         <th class="border border-gray-300 px-4 py-2 text-left">Description</th>
                         <th class="border border-gray-300 px-4 py-2 text-left">Actions</th>
@@ -24,7 +24,7 @@
                 </thead>
                 <tbody>
                     {% for DevelopmentMilestone in object_list %}
-                        <tr class="hover:bg-gray-50">
+                        <tr class="hover:bg-sky-100">
                             {% if DevelopmentMilestone.week %}
                                 <td class="border border-gray-300 px-4 py-2">Week {{ DevelopmentMilestone.week }}</td>
                             {% else %}
@@ -33,14 +33,14 @@
                             <td class="border border-gray-300 px-4 py-2">{{ DevelopmentMilestone.description|safe }}</td>
                             <td class="border border-gray-300 px-4 py-2">
                                 <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
-                                    <a href="{% url 'delete_milestone' DevelopmentMilestone.id %}" class="text-indigo-600 hover:underline"
+                                    <a href="{% url 'delete_milestone' DevelopmentMilestone.id %}" class="text-red-600 hover:underline"
                                     onclick="return confirm('Are you sure you want to delete this milestone?');">
                                         Delete
                                     </a>
                                     <a href="{% url 'edit_milestone' DevelopmentMilestone.id %}" class="text-indigo-600 hover:underline">
                                         Edit
                                     </a>
-                                    <a href="{% url 'view_milestone' DevelopmentMilestone.id %}" class="text-indigo-600 hover:underline">
+                                    <a href="{% url 'view_milestone' DevelopmentMilestone.id %}" class="text-green-600 hover:underline">
                                         View
                                     </a>
                                 </div>

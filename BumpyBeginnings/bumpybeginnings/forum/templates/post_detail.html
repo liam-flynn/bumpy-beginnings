@@ -13,14 +13,41 @@
     </p>
   </div>
 
+
+  <div class="mb-4">
+    <!-- help with button styling from https://canopas.com/20-button-effects-that-will-wow-your-users-ea415620a692 -->
+    <button id="toggle-comment-form" class="bg-sky-300 w-full font-bold border border-sky-900 py-2btn shadow-[0_9px_0_rgb(0,0,0)] hover:shadow-[0_4px_0px_rgb(0,0,0)] text-black ease-out hover:translate-y-1 transition-all rounded bold">
+      Leave a Comment
+    </button>
+  </div>
+
+
+  <div class="mt-8 border-2 p-2 border-gray-300 rounded bg-sky-50 hidden" id="new-comment-form">
+    <h2 class="text-2xl text-sky-900 mb-4 text-center underline font-bold">New Comment</h2>
+    <form method="post" class="space-y-4">
+      {% csrf_token %} {{ form.media }}
+      <div class="space-y-2">
+        <label
+          for="id_commentText"
+          class="block text-sm font-medium text-gray-700"
+          >Your Comment</label
+        >
+        {{ form.commentText }}
+      </div>
+      <button
+        type="submit"
+        class="w-full py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition duration-200"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+
   <div class="mt-8">
     <h2 class="text-2xl font-semibold text-sky-900 mb-4">Comments</h2>
-
-    <p>{{user_votes}}</p>
-
     <ul class="comments space-y-6">
       {% for comment in comments %}
-      <li class="p-6 bg-white shadow rounded-lg border border-gray-200">
+      <li class="p-6 shadow rounded-lg border bg-sky-50 border-gray-200">
         <div class="flex justify-between items-start">
           <div>
             <p class="text-sm font-semibold text-gray-800">
@@ -146,26 +173,6 @@
     </ul>
   </div>
 
-  <div class="mt-8">
-    <h2 class="text-2xl font-semibold text-sky-900 mb-4">Leave a Comment</h2>
-    <form method="post" class="space-y-4">
-      {% csrf_token %} {{ form.media }}
-      <div class="space-y-2">
-        <label
-          for="id_commentText"
-          class="block text-sm font-medium text-gray-700"
-          >Your Comment</label
-        >
-        {{ form.commentText }}
-      </div>
-      <button
-        type="submit"
-        class="w-full py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition duration-200"
-      >
-        Submit
-      </button>
-    </form>
-  </div>
 </div>
 
 <script>
@@ -245,6 +252,16 @@
       }
     }
   }
+
+  // hide the form until required
+  document.getElementById('toggle-comment-form').addEventListener('click', function() {
+    const formContainer = document.getElementById('new-comment-form');
+    formContainer.classList.toggle('hidden');
+  });
+
+
+
+
 </script>
 <style>
   .post-text ul {

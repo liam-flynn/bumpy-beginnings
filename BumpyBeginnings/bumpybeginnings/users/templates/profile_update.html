@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg mt-6">
-    <h1 class="text-3xl font-bold mb-6">Update Your Profile</h1>
+<div class="max-w-2xl mx-auto p-6 bg-sky-50 shadow-md rounded-lg mt-6">
+    <h1 class="text-3xl font-bold text-sky-900 mb-6">Update Your Profile</h1>
     
     {% if messages %}
         <ul class="mb-4">
@@ -18,7 +18,7 @@
         
 
         <div class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">User Information</h2>
+            <h2 class="text-2xl font-semibold mb-4 text-sky-900">User Information</h2>
             {{ user_form.non_field_errors }}
             <div class="space-y-4">
                 {% for field in user_form %}
@@ -37,7 +37,7 @@
         
  
         <div class="mb-8">
-            <h2 class="text-2xl font-semibold mb-4">Profile Details</h2>
+            <h2 class="text-2xl font-semibold mb-4 text-sky-900">Profile Details</h2>
             {{ site_user_form.non_field_errors }}
             <div class="space-y-4">
                 {% for field in site_user_form %}

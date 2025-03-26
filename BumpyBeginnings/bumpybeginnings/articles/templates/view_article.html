@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container mx-auto px-4 flex flex-col items-center w-full max-w-3xl">
-    <div class="w-full p-6 bg-white shadow-md rounded-lg">
+<div class="container mx-auto p-6 flex flex-col items-center w-full max-w-3xl">
+    <div class="p-4 border border-gray-200 shadow-md rounded-lg transition hover:border-gray-300">
         {% if article.image %}
         <div class="article-image flex justify-center mb-4">
             <img src="{{ article.image.url }}" alt="{{ article.title }}" class="w-full rounded-lg shadow">

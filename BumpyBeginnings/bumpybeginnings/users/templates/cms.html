@@ -1,20 +1,20 @@
 
 {% block content %}
-<div class="container mx-auto px-4">
-    <h1 class="text-3xl font-bold text-gray-800 mb-6">Admin Dashboard</h1>
+<div class="container mx-auto p-4">
+    <h1 class="text-3xl font-bold text-sky-900 mb-6">Admin Dashboard</h1>
     
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <a href="{% url 'benefit_list' %}" 
-           class="block text-center bg-indigo-600 text-white font-semibold py-4 rounded-lg shadow hover:bg-indigo-700 transition">
+           class="text-center flex justify-center items-center bg-lime-200 font-semibold py-4 border border-gray-200 rounded-lg shadow hover:bg-lime-300 transition">
             Manage Benefit Calculator
         </a>
         <a href="{% url 'articles' %}" 
-           class="block text-center bg-green-600 text-white font-semibold py-4 rounded-lg shadow hover:bg-green-700 transition">
+           class="text-cente flex justify-center items-center bg-cyan-200 font-semibold py-4 border border-gray-200 rounded-lg shadow hover:bg-cyan-300 transition">
             Manage User Articles
         </a>
         <a href="{% url 'trackers' %}" 
-           class="block text-center bg-blue-600 text-white font-semibold py-4 rounded-lg shadow hover:bg-blue-700 transition">
+           class="text-center flex justify-center items-center bg-violet-300 font-semibold py-4 border border-gray-200 rounded-lg shadow hover:bg-violet-400 transition">
             Manage Development Milestones
         </a>
     </div>

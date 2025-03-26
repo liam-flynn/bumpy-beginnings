@@ -3,18 +3,20 @@
 <div id="notification-dropdown" class="absolute right-0 mt-2 w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-50 hidden">
     <div class="p-4">
         <h2 class="text-lg font-semibold text-sky-800 mb-2">Notifications</h2>
-        <ul class="divide-y divide-gray-200">
-            {% for notification in notifications %}
-                <a href="{% url 'mark_as_read' notification.id %}" class="notification-link">
-                    <li id="notification-{{ notification.id }}" class="py-2 {% if notification.is_read %}text-gray-500 italic{% else %}text-black font-bold{% endif %} hover:bg-slate-300 hover:text-white">
-                        {{ notification.notification_message }}
-                        <br>
-                        <small class="text-xs text-gray-400">{{ notification.timestamp }}</small>
-                    </li>
-                </a>
-            {% empty %}
-                <li class="py-2 text-gray-500">You have no notifications.</li>
-            {% endfor %}
-        </ul>
+        <div class="max-h-96 overflow-y-auto">
+            <ul class="divide-y divide-gray-200">
+                {% for notification in notifications %}
+                    <a href="{% url 'mark_as_read' notification.id %}" class="notification-link">
+                        <li id="notification-{{ notification.id }}" class="py-2 {% if notification.is_read %}text-gray-500 italic{% else %}text-black font-bold{% endif %} hover:bg-slate-300 hover:text-white">
+                            {{ notification.notification_message }}
+                            <br>
+                            <small class="text-xs text-gray-400">{{ notification.timestamp }}</small>
+                        </li>
+                    </a>
+                {% empty %}
+                    <li class="py-2 text-gray-500">You have no notifications.</li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </div>

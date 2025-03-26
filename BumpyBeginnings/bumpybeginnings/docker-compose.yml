@@ -23,5 +23,8 @@ services:
     environment:
       DATABASE_URL: postgres://postgres:postgres@db:5432/bumpydb
 
+    volumes:
+    - ./:/app
+
 volumes:
   postgres_data:

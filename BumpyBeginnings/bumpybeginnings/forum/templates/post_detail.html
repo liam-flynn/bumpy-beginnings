@@ -57,7 +57,7 @@
           </div>
 
           {% if request.user != comment.commenter and not user.is_staff and not user.siteuser.isForumMod %}
-          <div class="mt-4 flex space-x-4">
+          <div class="mt-4 flex space-x-4 self-center">
             <button
               id="upvote-button-{{ comment.id }}"
               onclick="vote('{{ comment.id }}', 'upvote'); toggleVote('upvote', 'downvote', this, '{{ comment.id }}');"
@@ -95,7 +95,7 @@
                 </g>
               </svg>
             </button>
-            <p class="mt-2 text-sm text-gray-600">
+            <p class="mt-2 text-sm text-gray-600 whitespace-nowrap">
               Score:
               <span id="score-{{ comment.id }}" class="font-semibold"
                 >{{ comment.score }}</span

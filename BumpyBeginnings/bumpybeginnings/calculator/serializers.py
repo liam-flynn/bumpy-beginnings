@@ -1,13 +1,14 @@
 from rest_framework import serializers
 from .models import Benefit, BenefitRate, EligibilityCriteria
 
+
 class BenefitSerializer(serializers.ModelSerializer):
     # any other benefit are classed as valid values for 'dependent_benefits'
     dependent_benefits = serializers.PrimaryKeyRelatedField(
-        many=True, 
+        many=True,
         queryset=Benefit.objects.all()
     )
-    
+
     class Meta:
         model = Benefit
         fields = [
@@ -18,9 +19,11 @@ class BenefitSerializer(serializers.ModelSerializer):
             'dependent_benefits',
         ]
 
+
 class BenefitRateSerializer(serializers.ModelSerializer):
     # benefit needs to be a value found in the benefit table
-    benefit = serializers.PrimaryKeyRelatedField(queryset=Benefit.objects.all())
+    benefit = serializers.PrimaryKeyRelatedField(
+        queryset=Benefit.objects.all())
 
     class Meta:
         model = BenefitRate
@@ -35,10 +38,12 @@ class BenefitRateSerializer(serializers.ModelSerializer):
             'effective_date',
         ]
 
+
 class EligibilityCriteriaSerializer(serializers.ModelSerializer):
     # benefit needs to be a value found in the benefit table
-    benefit = serializers.PrimaryKeyRelatedField(queryset=Benefit.objects.all())
-    
+    benefit = serializers.PrimaryKeyRelatedField(
+        queryset=Benefit.objects.all())
+
     class Meta:
         model = EligibilityCriteria
         fields = [

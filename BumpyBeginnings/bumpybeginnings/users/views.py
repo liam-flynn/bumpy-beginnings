@@ -22,7 +22,8 @@ def register(request):
             # check to make sure the username isn't already in use
             username = user_form.cleaned_data['username']
             if User.objects.filter(username=username).exists():
-                user_form.add_error('username', 'A user with that username already exists.')
+                user_form.add_error(
+                    'username', 'A user with that username already exists.')
             else:
                 try:
                     # save the new user
@@ -30,8 +31,9 @@ def register(request):
                     user.set_password(user.password)
                     user.save()
                     registered = True
-                    messages.success(request, "Registration successful! Please log in.")
-                    return redirect('login') 
+                    messages.success(
+                        request, "Registration successful! Please log in.")
+                    return redirect('login')
                 except ValidationError as e:
                     user_form.add_error(None, str(e))
         else:
@@ -60,13 +62,12 @@ def get_details(request):
             siteUser.user = user
             siteUser.save()
             # Redirect to the homepage after saving
-            return redirect('homepage') 
+            return redirect('homepage')
     else:
         details_form = SiteUserForm()
 
     context = {'details_form': details_form}
     return render(request, 'provideDetails.html', context)
-
 
 
 def homepage(request):
@@ -75,6 +76,8 @@ def homepage(request):
     return render(request, 'homepage.html')
 
 # help from https://docs.djangoproject.com/en/5.1/topics/auth/default/
+
+
 def user_login(request):
     if request.method == 'POST':
         username = request.POST["username"]
@@ -86,7 +89,7 @@ def user_login(request):
             if not password:
                 messages.error(request, "Password is required.")
             return render(request, 'login.html')
-        
+
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
@@ -94,10 +97,9 @@ def user_login(request):
                 return redirect('get_details')
         else:
             messages.error(request, "Invalid login. Please try again.")
-            return render(request, 'login.html')     
+            return render(request, 'login.html')
     else:
         return render(request, 'login.html')
-
 
 
 def user_logout(request):
@@ -110,7 +112,8 @@ def manage_mod_privileges(request):
     # get the search query from GET or POST.
     query = request.GET.get('q') or request.POST.get('q', '')
     users = User.objects.filter(
-        Q(username__icontains=query) | Q(first_name__icontains=query) | Q(last_name__icontains=query)
+        Q(username__icontains=query) | Q(
+            first_name__icontains=query) | Q(last_name__icontains=query)
     ).order_by('username')
 
     # add pagination.
@@ -128,15 +131,17 @@ def manage_mod_privileges(request):
             if action == 'grant':
                 site_user.isForumMod = True
                 site_user.save()
-                messages.success(request, f"{user.username} has been granted moderator privileges.")
+                messages.success(
+                    request, f"{user.username} has been granted moderator privileges.")
             # "remove" sets "isForumMod" to False
             elif action == 'remove':
                 site_user.isForumMod = False
                 site_user.save()
-                messages.success(request, f"Moderator privileges removed for {user.username}.")
+                messages.success(
+                    request, f"Moderator privileges removed for {user.username}.")
         except User.DoesNotExist:
             messages.error(request, "User does not exist.")
-        
+
         return render(request, 'manage_mod_privileges.html', {'page_obj': page_obj, 'query': query})
 
     return render(request, 'manage_mod_privileges.html', {'page_obj': page_obj, 'query': query})
@@ -145,6 +150,7 @@ def manage_mod_privileges(request):
 @user_passes_test(lambda user: user.is_staff, login_url='/login/')
 def cms_dashboard(request):
     return render(request, 'cms.html')
+
 
 @login_required
 def profile_update(request):
@@ -160,7 +166,7 @@ def profile_update(request):
             # update user and profile details.
             user_form.save()
             site_user_form.save()
-            
+
             # Uudate the password only if provided.
             new_password = password_form.cleaned_data.get("password")
             if new_password:
@@ -168,8 +174,9 @@ def profile_update(request):
                 user.save()
                 # update the session hash so the user remains logged in.
                 update_session_auth_hash(request, user)
-            
-            messages.success(request, "Your profile has been updated successfully!")
+
+            messages.success(
+                request, "Your profile has been updated successfully!")
             return redirect('homepage')
     else:
         user_form = UpdateUserForm(instance=user)

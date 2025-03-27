@@ -7,7 +7,7 @@ from hypothesis.strategies import text
 from hypothesis.extra.django import TestCase as HypothesisTestCase
 from hypothesis import given, strategies as st
 from hypothesis.strategies import text
-from .strategies import  description_strategy, create_unique_forum, create_post, create_comment, unique_forum_name_strategy
+from .strategies import description_strategy, create_unique_forum, create_post, create_comment, unique_forum_name_strategy
 from users.strategies import create_siteuser
 
 
@@ -15,8 +15,10 @@ class ForumViewTests(HypothesisTestCase):
     # test staff v user forum visibility. Staff members can see inactive forums
     def test_forum_list_view_staff_and_non_staff(self):
         # create accounts for staff and users
-        staff = User.objects.create_user(username="staff", password="password", is_staff=True)
-        user = User.objects.create_user(username="user", password="password", is_staff=False)
+        staff = User.objects.create_user(
+            username="staff", password="password", is_staff=True)
+        user = User.objects.create_user(
+            username="user", password="password", is_staff=False)
         # create a live and not live forum
         Forum.objects.create(forumName="Live Forum", isLive=True)
         Forum.objects.create(forumName="Not Live Forum", isLive=False)
@@ -37,13 +39,13 @@ class ForumViewTests(HypothesisTestCase):
         inactive_forums = [forum for forum in forums if not forum.isLive]
         self.assertTrue(len(inactive_forums) >= 1)
 
-
     @settings(deadline=1000)
     @given(forum_name=unique_forum_name_strategy(), description=description_strategy)
     # check to see if staff can create new forums
     def test_create_forum_view(self, forum_name, description):
         # create a new staff member and login
-        staff = User.objects.create_user(username="staff_create", password="password", is_staff=True)
+        staff = User.objects.create_user(
+            username="staff_create", password="password", is_staff=True)
         self.client.login(username="staff_create", password="password")
         # pass the data to the view
         data = {
@@ -54,11 +56,13 @@ class ForumViewTests(HypothesisTestCase):
         response = self.client.post(reverse('create_forum'), data)
         # expect a redirecton successful creation.
         self.assertEqual(response.status_code, 302)
-        self.assertTrue(Forum.objects.filter(forumName=forum_name.strip()).exists())
+        self.assertTrue(Forum.objects.filter(
+            forumName=forum_name.strip()).exists())
 
     def test_delete_forum_view(self):
         # create a new staff member and login
-        staff = User.objects.create_user(username="staff_delete", password="password", is_staff=True)
+        staff = User.objects.create_user(
+            username="staff_delete", password="password", is_staff=True)
         self.client.login(username="staff_delete", password="password")
         # create a new forum and pass it's id to the "delete_forum" view
         forum = create_unique_forum()
@@ -71,7 +75,8 @@ class ForumViewTests(HypothesisTestCase):
 
     def test_deactivate_forum_view(self):
         # create a new staff member and login
-        staff = User.objects.create_user(username="staff_deactivate", password="password", is_staff=True)
+        staff = User.objects.create_user(
+            username="staff_deactivate", password="password", is_staff=True)
         self.client.login(username="staff_deactivate", password="password")
         # create a new forum and pass it's id to the "deactivate_forum" view
         forum = Forum.objects.create(forumName="Deactivate Forum", isLive=True)
@@ -84,10 +89,12 @@ class ForumViewTests(HypothesisTestCase):
 
     def test_reactivate_forum_view(self):
         # create a new staff member and login
-        staff = User.objects.create_user(username="staff_reactivate", password="password", is_staff=True)
+        staff = User.objects.create_user(
+            username="staff_reactivate", password="password", is_staff=True)
         self.client.login(username="staff_reactivate", password="password")
         # create a new forum and pass it's id to the "Reactivate Forum" view
-        forum = Forum.objects.create(forumName="Reactivate Forum", isLive=False)
+        forum = Forum.objects.create(
+            forumName="Reactivate Forum", isLive=False)
         url = reverse('reactivate_forum', kwargs={'forum_id': forum.id})
         # check to make sure the forum is live
         response = self.client.get(url)
@@ -103,49 +110,56 @@ class ForumViewTests(HypothesisTestCase):
         forum.isLive = True
         forum.save()
         # create a user that will be our "poster"
-        user = User.objects.create_user(username="user_post", password="password")
+        user = User.objects.create_user(
+            username="user_post", password="password")
         self.client.login(username="user_post", password="password")
         url = reverse('forum_detail', kwargs={'pk': forum.id})
         # pass thepost details to the view
         post_title = "Test Post"
         post_text = "This is a test post."
-        response = self.client.post(url, {'postTitle': post_title, 'postText': post_text})
+        response = self.client.post(
+            url, {'postTitle': post_title, 'postText': post_text})
         # check to make sure the post has been created and it is linked to our user
         self.assertEqual(response.status_code, 302)
         post = forum.posts.filter(postTitle=post_title).first()
         self.assertIsNotNone(post)
         self.assertEqual(post.poster, user)
 
-
     def test_delete_post_authorised(self):
         # create a poster user
-        poster = User.objects.create_user(username="poster_auth", password="password")
+        poster = User.objects.create_user(
+            username="poster_auth", password="password")
         create_siteuser(poster)
         # create a forum for the post
         forum = create_unique_forum()
         forum.isLive = True
         forum.save()
         # create the post we want to delete
-        post = create_post(forum, poster, postTitle="Delete Authorised", postText="Test")
+        post = create_post(
+            forum, poster, postTitle="Delete Authorised", postText="Test")
         # login as the poster and confirm we can delete the post
         self.client.login(username="poster_auth", password="password")
-        response = self.client.get(reverse('delete_post', kwargs={'pk': post.id}))
+        response = self.client.get(
+            reverse('delete_post', kwargs={'pk': post.id}))
         self.assertEqual(response.status_code, 302)
         with self.assertRaises(Post.DoesNotExist):
             Post.objects.get(id=post.id)
 
     def test_delete_comment_authorised(self):
         # create a user for creating post and comment
-        user = User.objects.create_user(username="user_delcomment", password="password")
+        user = User.objects.create_user(
+            username="user_delcomment", password="password")
         create_siteuser(user)
         # create aforum
         forum = create_unique_forum()
         forum.isLive = True
         forum.save()
         # create a post
-        post = create_post(forum, user, postTitle="Comment Delete", postText="Test")
+        post = create_post(
+            forum, user, postTitle="Comment Delete", postText="Test")
         # create a comment
-        comment = create_comment(post, user, commentText="Delete this comment", score=0)
+        comment = create_comment(
+            post, user, commentText="Delete this comment", score=0)
         # login as the commentor and check to see comment can be deleted
         self.client.login(username="user_delcomment", password="password")
         url = reverse('delete_comment', kwargs={'pk': comment.id})
@@ -156,15 +170,18 @@ class ForumViewTests(HypothesisTestCase):
             Comment.objects.get(id=comment.id)
 
     def test_upvote_comment_view(self):
-        # create a voter and a commentor 
+        # create a voter and a commentor
         voter = User.objects.create_user(username="voter", password="password")
-        commentor = User.objects.create_user(username="commentor", password="password")
+        commentor = User.objects.create_user(
+            username="commentor", password="password")
         # create a forum / post / comment
         forum = create_unique_forum()
         forum.isLive = True
         forum.save()
-        post = create_post(forum, commentor, postTitle="Upvote Test", postText="Test")
-        comment = create_comment(post, commentor, commentText="Upvote me", score=0)
+        post = create_post(
+            forum, commentor, postTitle="Upvote Test", postText="Test")
+        comment = create_comment(
+            post, commentor, commentText="Upvote me", score=0)
         # login as the voter
         self.client.login(username="voter", password="password")
         # try to upvote the comment using its id
@@ -176,16 +193,19 @@ class ForumViewTests(HypothesisTestCase):
         self.assertEqual(data.get("score"), comment.score + 1)
 
     def test_downvote_comment_view(self):
-        # create a voter and a commentor 
+        # create a voter and a commentor
         voter = User.objects.create_user(username="voter", password="password")
-        commentor = User.objects.create_user(username="commentor", password="password")
+        commentor = User.objects.create_user(
+            username="commentor", password="password")
 
         # create a forum / post / comment
         forum = create_unique_forum()
         forum.isLive = True
         forum.save()
-        post = create_post(forum, commentor, postTitle="Downvote Test", postText="Test")
-        comment = create_comment(post, commentor, commentText="Downvote me", score=0)
+        post = create_post(
+            forum, commentor, postTitle="Downvote Test", postText="Test")
+        comment = create_comment(
+            post, commentor, commentText="Downvote me", score=0)
 
         # login as the voter
         self.client.login(username="voter", password="password")
@@ -201,18 +221,23 @@ class ForumViewTests(HypothesisTestCase):
 
     def test_low_score_comments_view(self):
         # create a staff user and a poster
-        staff = User.objects.create_user(username="staff", password="password", is_staff=True)
-        poster = User.objects.create_user(username="poster", password="password")
+        staff = User.objects.create_user(
+            username="staff", password="password", is_staff=True)
+        poster = User.objects.create_user(
+            username="poster", password="password")
 
         # create a forum and post
         forum = create_unique_forum()
         forum.isLive = True
         forum.save()
-        post = create_post(forum, poster, postTitle="Test Post", postText="Test")
+        post = create_post(
+            forum, poster, postTitle="Test Post", postText="Test")
 
         # create high and low scoring comments
-        low_comment = create_comment(post, poster, commentText="Low score comment", score=-3)
-        high_comment = create_comment(post, poster, commentText="High score comment", score=3)
+        low_comment = create_comment(
+            post, poster, commentText="Low score comment", score=-3)
+        high_comment = create_comment(
+            post, poster, commentText="High score comment", score=3)
 
         # login as staff member
         self.client.login(username="staff", password="password")

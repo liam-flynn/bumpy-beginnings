@@ -5,7 +5,8 @@ import hypothesis.strategies as st
 from hypothesis.extra.django import TestCase as HypothesisTestCase
 from calculator.models import Benefit
 from decimal import Decimal
-from .strategies import benefit_name_strategy, benefit_description_strategy, frequency_strategy, create_staff_user, criterion_strategy, criteria_description_strategy,value_type_strategy,match_type_strategy, decimal_strategy,reduction_rate_strategy, effective_date_value
+from .strategies import benefit_name_strategy, benefit_description_strategy, frequency_strategy, create_staff_user, criterion_strategy, criteria_description_strategy, value_type_strategy, match_type_strategy, decimal_strategy, reduction_rate_strategy, effective_date_value
+
 
 class BenefitViewTests(HypothesisTestCase):
 
@@ -37,12 +38,14 @@ class BenefitViewTests(HypothesisTestCase):
     @given(
         # select random replacement values (not null) to replace current values
         new_name=st.text(min_size=1, max_size=100, alphabet=string.printable)
-                 .filter(lambda s: s.strip() != ""),
+        .filter(lambda s: s.strip() != ""),
 
-        new_description=st.text(min_size=1, max_size=500, alphabet=string.printable)
-                          .filter(lambda s: s.strip() != ""),
+        new_description=st.text(min_size=1, max_size=500,
+                                alphabet=string.printable)
+        .filter(lambda s: s.strip() != ""),
 
-        new_frequency=st.sampled_from(["once", "weekly", "monthly", "annually"])
+        new_frequency=st.sampled_from(
+            ["once", "weekly", "monthly", "annually"])
     )
     def test_edit_benefit_view(self, new_name, new_description, new_frequency):
         staff = create_staff_user("benefit_editor", "password")
@@ -125,16 +128,21 @@ class BenefitViewTests(HypothesisTestCase):
     # test "edit_benefit_rate" view.
     @settings(deadline=1000, suppress_health_check=[HealthCheck.filter_too_much])
     @given(
-        new_amount=st.floats(min_value=0.01, max_value=1000, allow_nan=False, allow_infinity=False),
-        new_income_threshold_min=st.floats(min_value=0.01, max_value=1000, allow_nan=False, allow_infinity=False),
-        new_income_threshold_max=st.floats(min_value=0.01, max_value=1000, allow_nan=False, allow_infinity=False),
-        new_reduction_rate_per_unit=st.floats(min_value=0.01, max_value=100, allow_nan=False, allow_infinity=False),
-        new_income_unit=st.floats(min_value=0.01, max_value=1000, allow_nan=False, allow_infinity=False)
+        new_amount=st.floats(min_value=0.01, max_value=1000,
+                             allow_nan=False, allow_infinity=False),
+        new_income_threshold_min=st.floats(
+            min_value=0.01, max_value=1000, allow_nan=False, allow_infinity=False),
+        new_income_threshold_max=st.floats(
+            min_value=0.01, max_value=1000, allow_nan=False, allow_infinity=False),
+        new_reduction_rate_per_unit=st.floats(
+            min_value=0.01, max_value=100, allow_nan=False, allow_infinity=False),
+        new_income_unit=st.floats(
+            min_value=0.01, max_value=1000, allow_nan=False, allow_infinity=False)
     )
     def test_edit_benefit_rate_view(self, new_amount, new_income_threshold_min, new_income_threshold_max, new_reduction_rate_per_unit, new_income_unit):
         # ensure that income_threshold_min is not greater than income_threshold_max.
         assume(new_income_threshold_min <= new_income_threshold_max)
-        
+
         staff = create_staff_user("rate_editor")
         self.client.login(username="rate_editor", password="password")
         # create a Benefit to attach the rate.
@@ -191,8 +199,8 @@ class BenefitViewTests(HypothesisTestCase):
         # assert that the BenefitRate no longer exists in the database
         self.assertFalse(rate.__class__.objects.filter(id=rate.id).exists())
 
-
     # test "create_eligibility_criteria" view.
+
     @settings(deadline=1000, suppress_health_check=[HealthCheck.filter_too_much])
     @given(
         criterion=criterion_strategy,
@@ -220,9 +228,11 @@ class BenefitViewTests(HypothesisTestCase):
             'match_type': match_type
         }
         # pass the data to the view and check for redirect on success and criteria created
-        response = self.client.post(reverse("create_eligibility_criteria"), data)
+        response = self.client.post(
+            reverse("create_eligibility_criteria"), data)
         self.assertEqual(response.status_code, 302)
-        self.assertTrue(benefit.eligibility_criteria.filter(criterion=criterion.strip()).exists())
+        self.assertTrue(benefit.eligibility_criteria.filter(
+            criterion=criterion.strip()).exists())
 
     # test "edit_eligibility_criteria" view.
     @settings(deadline=1000, suppress_health_check=[HealthCheck.filter_too_much])
@@ -249,7 +259,8 @@ class BenefitViewTests(HypothesisTestCase):
             value="Initial Value",
             match_type="exact"
         )
-        url = reverse("edit_eligibility_criteria", kwargs={'criteria_id': criteria.id})
+        url = reverse("edit_eligibility_criteria",
+                      kwargs={'criteria_id': criteria.id})
         new_value = "" if new_match_type == "none" else "NewValue"
         data = {
             'benefit': benefit.id,
@@ -281,7 +292,8 @@ class BenefitViewTests(HypothesisTestCase):
             value="Value",
             match_type="exact"
         )
-        url = reverse("delete_eligibility_criteria", kwargs={'criteria_id': criteria.id})
+        url = reverse("delete_eligibility_criteria",
+                      kwargs={'criteria_id': criteria.id})
         response = self.client.get(url)
         self.assertEqual(response.status_code, 302)
         with self.assertRaises(criteria.__class__.DoesNotExist):

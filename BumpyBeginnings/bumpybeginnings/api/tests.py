@@ -26,7 +26,8 @@ class APITestSetup(HypothesisTestCase):
         # get or create a admin user for authenication requests
         cls.user, created = User.objects.get_or_create(
             username='admin',
-            defaults={'email': 'admin@bumpybeginnings.co.uk', 'is_superuser': True, 'is_staff': True}
+            defaults={'email': 'admin@bumpybeginnings.co.uk',
+                      'is_superuser': True, 'is_staff': True}
         )
         # if we didn't already have a user and one created, add in the password.
         if created:
@@ -59,7 +60,8 @@ class ArticleViewSetTest(APITestSetup):
         # get the 'retrieve' view for that article
         view = ArticleViewSet.as_view({'get': 'retrieve'})
         # create a GET request to the article detail URL using the pk of what we just created
-        request = self.factory.get(reverse('article-detail', args=[article.pk]))
+        request = self.factory.get(
+            reverse('article-detail', args=[article.pk]))
         force_authenticate(request, user=self.user)
         response = view(request, pk=article.pk)
         # assert that the response status code is 200 and the id matches.
@@ -67,6 +69,8 @@ class ArticleViewSetTest(APITestSetup):
         self.assertEqual(response.data['id'], article.id)
 
 # tests for the Forum API endpoints
+
+
 class ForumViewSetTest(APITestSetup):
     @given(forum=from_model(Forum))
     def test_list_forums(self, forum):
@@ -94,6 +98,8 @@ class ForumViewSetTest(APITestSetup):
         self.assertEqual(response.data['id'], forum.id)
 
 # tests for the forum posts API endpoint
+
+
 class PostViewSetTest(APITestSetup):
     @given(post=post_strategy())
     def test_list_posts(self, post):
@@ -108,6 +114,8 @@ class PostViewSetTest(APITestSetup):
         self.assertEqual(response.status_code, 200)
 
 # tests for the comment API endpoints
+
+
 class CommentViewSetTest(APITestSetup):
     @given(comment=comment_strategy())
     def test_list_comments(self, comment):
@@ -120,6 +128,7 @@ class CommentViewSetTest(APITestSetup):
         # assert that we get a 200 OK response
         response = view(request)
         self.assertEqual(response.status_code, 200)
+
 
 class VoteViewSetTest(APITestSetup):
     @given(vote=vote_strategy())
@@ -134,7 +143,9 @@ class VoteViewSetTest(APITestSetup):
         response = view(request)
         self.assertEqual(response.status_code, 200)
 
-# tests for the development milestones API endpoint 
+# tests for the development milestones API endpoint
+
+
 class DevelopmentMilestoneViewSetTest(APITestSetup):
     @given(milestone=development_milestone_strategy())
     def test_list_milestones(self, milestone):
@@ -149,6 +160,8 @@ class DevelopmentMilestoneViewSetTest(APITestSetup):
         self.assertEqual(response.status_code, 200)
 
 # tests for site user API endpoint
+
+
 class SiteUserViewSetTest(APITestSetup):
     @given(user=site_user_strategy())
     def test_list_siteusers(self, user):

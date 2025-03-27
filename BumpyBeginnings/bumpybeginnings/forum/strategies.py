@@ -3,7 +3,7 @@ from hypothesis.strategies import text, composite, integers, booleans, character
 from hypothesis import strategies as st
 from users.strategies import user_strategy
 from django.db import IntegrityError
-from hypothesis import  assume
+from hypothesis import assume
 from notifications.models import Notification
 import string
 
@@ -11,18 +11,23 @@ import string
 @composite
 def unique_username_strategy(draw):
     # start with a non-empty/none null string
-    base = draw(text(characters(blacklist_characters='\x00'), min_size=1, max_size=10))
+    base = draw(text(characters(blacklist_characters='\x00'),
+                min_size=1, max_size=10))
     # append a unique integer to the base string
     unique_int = draw(integers(min_value=0, max_value=100000))
     return f"{base}_{unique_int}"
 
+
 @composite
 def unique_forum_name_strategy(draw):
     # start with a non-empty/none null string
-    base = draw(text(characters(blacklist_characters='\x00'), min_size=1, max_size=10))
+    base = draw(text(characters(blacklist_characters='\x00'),
+                min_size=1, max_size=10))
     # can be longer than the username due to the length diffrences
     unique_int = draw(integers(min_value=0, max_value=10**6))
     return f"{base}_{unique_int}"
+
+
 
 # strategy for creating forum examples
 @composite
@@ -39,7 +44,9 @@ def forum_strategy(draw):
             isLive=is_live
         )
     except IntegrityError:
-        assume(False) 
+        assume(False)
+
+
 
 # strategy for creating post examples
 @composite
@@ -63,6 +70,8 @@ def post_strategy(draw, forum=None, poster=None):
         isActive=is_active
     )
 
+
+
 # strategy for creating comment examples
 @composite
 def comment_strategy(draw, post=None, commenter=None):
@@ -82,7 +91,6 @@ def comment_strategy(draw, post=None, commenter=None):
     )
 
 
-
 # strategy for creating Votes
 @composite
 def vote_strategy(draw, user=None, comment=None):
@@ -96,6 +104,8 @@ def vote_strategy(draw, user=None, comment=None):
         comment=comment,
         vote_type=vote_type
     )
+
+
 
 # strategy for creating a Notifications
 @composite
@@ -111,13 +121,12 @@ def notification_strategy(draw, recipient=None):
     )
 
 
-
-
 # helper functions.
 # used to quickly generate a forum (i.e. creating a post needs a forum for it to be in)
 def create_unique_forum(description="Test Forum", isLive=True):
     forum_name = unique_forum_name_strategy()
     return Forum.objects.create(forumName=forum_name, description=description, isLive=isLive)
+
 
 def create_post(forum, poster, postTitle="Test Title", postText="Test Text", isActive=True):
     return Post.objects.create(
@@ -128,6 +137,7 @@ def create_post(forum, poster, postTitle="Test Title", postText="Test Text", isA
         isActive=isActive
     )
 
+
 def create_comment(post, commenter, commentText="Test Comment", score=0):
     return Comment.objects.create(
         post=post,
@@ -135,6 +145,7 @@ def create_comment(post, commenter, commentText="Test Comment", score=0):
         commentText=commentText,
         score=score
     )
+
 
 description_strategy = text(
     alphabet=string.printable,

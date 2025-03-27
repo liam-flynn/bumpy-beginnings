@@ -1,6 +1,7 @@
 from django import forms
 from .models import Benefit, BenefitRate, EligibilityCriteria
 
+
 class BenefitForm(forms.ModelForm):
     dependent_benefits = forms.ModelMultipleChoiceField(
         queryset=Benefit.objects.all(),
@@ -9,6 +10,7 @@ class BenefitForm(forms.ModelForm):
             'class': 'rounded-lg shadow-sm border border-gray-200 py-2 px-4 w-full focus:ring-2 focus:ring-sky-500',
         })
     )
+
     class Meta:
         model = Benefit
         fields = ['name', 'description', 'frequency', 'dependent_benefits']
@@ -31,12 +33,12 @@ class BenefitRateForm(forms.ModelForm):
     class Meta:
         model = BenefitRate
         fields = [
-            'benefit', 
-            'amount', 
-            'income_threshold_min', 
-            'income_threshold_max', 
-            'reduction_rate_per_unit', 
-            'income_unit', 
+            'benefit',
+            'amount',
+            'income_threshold_min',
+            'income_threshold_max',
+            'reduction_rate_per_unit',
+            'income_unit',
             'effective_date'
         ]
         widgets = {
@@ -73,7 +75,8 @@ class BenefitRateForm(forms.ModelForm):
 class EligibilityCriteriaForm(forms.ModelForm):
     class Meta:
         model = EligibilityCriteria
-        fields = ['benefit', 'criterion', 'description', 'value_type', 'value', 'match_type']
+        fields = ['benefit', 'criterion', 'description',
+                  'value_type', 'value', 'match_type']
         widgets = {
             'benefit': forms.Select(attrs={
                 'class': 'rounded-lg shadow-sm border border-gray-200 py-2 px-4 w-full focus:ring-2 focus:ring-sky-500'
@@ -97,6 +100,7 @@ class EligibilityCriteriaForm(forms.ModelForm):
                 'class': 'rounded-lg shadow-sm border border-gray-200 py-2 px-4 w-full focus:ring-2 focus:ring-sky-500'
             }),
         }
+
     def __init__(self, *args, **kwargs):
         super(EligibilityCriteriaForm, self).__init__(*args, **kwargs)
         # start with the no match type i.e. exact match, higher than, lower than, etc

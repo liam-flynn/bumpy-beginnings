@@ -2,13 +2,14 @@ from django import forms
 from .models import Forum, Post, Comment
 from tinymce.widgets import TinyMCE
 
+
 class ForumForm(forms.ModelForm):
     class Meta:
         model = Forum
         fields = ['forumName', 'description', 'isLive']
         widgets = {
             'forumName': forms.TextInput(attrs={
-                'class': 'rounded-lg shadow-sm border-gray-200 border py-2 px-4 w-full focus:ring-2 focus:ring-sky-500', 
+                'class': 'rounded-lg shadow-sm border-gray-200 border py-2 px-4 w-full focus:ring-2 focus:ring-sky-500',
                 'placeholder': 'Enter forum name'
             }),
             'description': forms.Textarea(attrs={
@@ -20,6 +21,7 @@ class ForumForm(forms.ModelForm):
                 'class': 'h-4 w-4 text-sky-600 border-gray-300 focus:ring-sky-500'
             }),
         }
+
 
 class PostForm(forms.ModelForm):
     class Meta:

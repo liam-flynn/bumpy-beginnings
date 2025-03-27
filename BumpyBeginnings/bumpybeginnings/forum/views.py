@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView
 from .models import Forum, Post, Comment, Vote
 from django.contrib.auth.decorators import user_passes_test
@@ -11,6 +11,8 @@ from django.contrib import messages
 import json
 
 # lists all forums on forums page
+
+
 class ForumListView(ListView):
     model = Forum
     template_name = 'forum_list.html'
@@ -26,8 +28,10 @@ class ForumListView(ListView):
             return Forum.objects.all()
         # otherwise, just return the live forums
         return Forum.objects.filter(isLive=True)
-    
+
 # only staff members can create new forums
+
+
 @user_passes_test(lambda user: user.is_staff, login_url='/login/')
 def create_forum(request):
     if request.method == 'POST':
@@ -42,6 +46,8 @@ def create_forum(request):
     return render(request, 'create_forum.html', context)
 
 # only staff can delete forums
+
+
 @user_passes_test(lambda user: user.is_staff, login_url='/login/')
 def delete_forum(request, forum_id):
     # find the forum using the forum id and delete it
@@ -58,6 +64,7 @@ def deactivate_forum(request, forum_id):
     forum.save()
     return redirect('forum_list')
 
+
 @user_passes_test(lambda user: user.is_staff, login_url='/login/')
 def reactivate_forum(request, forum_id):
     # find the forum using the forum id and swap the status to inactive
@@ -67,6 +74,8 @@ def reactivate_forum(request, forum_id):
     return redirect('forum_list')
 
 # used for forum detail page (lists all posts within a forum)
+
+
 class ForumDetailView(DetailView):
     model = Forum
     template_name = 'forum_detail.html'
@@ -76,14 +85,14 @@ class ForumDetailView(DetailView):
         context = super().get_context_data(**kwargs)
 
         # get all posts for this forum
-        context['posts'] = self.object.posts.all()  
+        context['posts'] = self.object.posts.all()
         # add the post form to the context
         context['form'] = PostForm()
         context['breadcrumbs'] = get_breadcrumbs(self.request)
         return context
-    
 
     # Handle the submission of a new post
+
     def post(self, request, *args, **kwargs):
         forum = self.get_object()
         form = PostForm(request.POST)
@@ -102,7 +111,6 @@ class PostDetailView(DetailView):
     model = Post
     template_name = 'post_detail.html'
     context_object_name = 'post'
-
 
     def get_object(self):
         # get the forum and post id from the URL
@@ -126,7 +134,7 @@ class PostDetailView(DetailView):
         # pass the cooments, votes, comment form and breadcrumbs to the page
         context['comments'] = comments
         context['user_votes_json'] = json.dumps(user_votes)
-        context['form'] = CommentForm()  
+        context['form'] = CommentForm()
         context['breadcrumbs'] = get_breadcrumbs(self.request)
         return context
 
@@ -162,7 +170,7 @@ def delete_post(request, pk):
         raise PermissionDenied
 
     # Store the forum id to redirect back to the forum page
-    forum_pk = post.forum.pk  
+    forum_pk = post.forum.pk
     post.delete()
     return redirect('forum_detail', pk=forum_pk)
 
@@ -183,7 +191,8 @@ def delete_comment(request, pk):
 
 def upvote_comment(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
-    vote, created = Vote.objects.get_or_create(user=request.user, comment=comment)
+    vote, created = Vote.objects.get_or_create(
+        user=request.user, comment=comment)
 
     if vote.vote_type == 'upvote':
         # User has already upvoted; remove the vote
@@ -194,7 +203,7 @@ def upvote_comment(request, comment_id):
         vote.vote_type = 'upvote'
         vote.save()
         # Neutralize the downvote and add the upvote
-        comment.score += 2  
+        comment.score += 2
     else:
         # user upvotes for the first time
         vote.vote_type = 'upvote'
@@ -208,7 +217,8 @@ def upvote_comment(request, comment_id):
 def downvote_comment(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
 
-    vote, created = Vote.objects.get_or_create(user=request.user, comment=comment)
+    vote, created = Vote.objects.get_or_create(
+        user=request.user, comment=comment)
 
     if vote.vote_type == 'downvote':
         # User has already downvoted; remove the vote
@@ -219,7 +229,7 @@ def downvote_comment(request, comment_id):
         vote.vote_type = 'downvote'
         vote.save()
         # Neutralize the upvote and add the downvote
-        comment.score -= 2  
+        comment.score -= 2
     else:
         # User downvotes for the first time
         vote.vote_type = 'downvote'
@@ -230,15 +240,16 @@ def downvote_comment(request, comment_id):
     return JsonResponse({"score": comment.score})
 
 
-
 @user_passes_test(lambda user: user.is_staff, login_url='/login/')
 def low_score_comments(request):
 
     # get the threshold from the page but if not provided or on the first GET use -2
-    threshold = int(request.POST.get('threshold', -2)) if request.method == "POST" else -2
+    threshold = int(request.POST.get('threshold', -2)
+                    ) if request.method == "POST" else -2
 
     # get a list of comments and their related details
-    comments = Comment.objects.filter(score__lt=threshold).select_related('post', 'commenter')
+    comments = Comment.objects.filter(
+        score__lt=threshold).select_related('post', 'commenter')
 
     context = {
         'comments': comments,

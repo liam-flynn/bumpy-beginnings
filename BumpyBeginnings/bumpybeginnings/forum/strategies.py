@@ -11,7 +11,7 @@ import string
 @composite
 def unique_username_strategy(draw):
     # start with a non-empty/none null string
-    base = draw(text(characters(blacklist_characters='\x00'), min_size=1, max_size=10))
+    base = draw(safe_text_strategy(min_size=1, max_size=10))
     # append a unique integer to the base string
     unique_int = draw(integers(min_value=0, max_value=100000))
     return f"{base}_{unique_int}"
@@ -19,7 +19,7 @@ def unique_username_strategy(draw):
 @composite
 def unique_forum_name_strategy(draw):
     # start with a non-empty/none null string
-    base = draw(text(characters(blacklist_characters='\x00'), min_size=1, max_size=10))
+    base = draw(safe_text_strategy(min_size=1, max_size=10))
     # can be longer than the username due to the length diffrences
     unique_int = draw(integers(min_value=0, max_value=10**6))
     return f"{base}_{unique_int}"
@@ -28,9 +28,7 @@ def unique_forum_name_strategy(draw):
 @composite
 def forum_strategy(draw):
     forum_name = draw(unique_forum_name_strategy())
-    description = draw(
-        text(characters(blacklist_characters='\x00'), min_size=1, max_size=500)
-    )
+    description = draw(safe_text_strategy(min_size=1, max_size=500))
     is_live = draw(booleans())
     try:
         return Forum.objects.create(
@@ -48,12 +46,9 @@ def post_strategy(draw, forum=None, poster=None):
         forum = draw(forum_strategy())
     if poster is None:
         poster = draw(user_strategy)
-    post_title = draw(
-        text(characters(blacklist_characters='\x00'), min_size=1, max_size=255)
-    )
-    post_text = draw(
-        text(characters(blacklist_characters='\x00'), min_size=1, max_size=500)
-    )
+    post_title = draw(safe_text_strategy(min_size=1, max_size=255))
+    post_text = draw(safe_text_strategy(min_size=1, max_size=500))
+    
     is_active = draw(st.booleans())
     return Post.objects.create(
         forum=forum,
@@ -63,6 +58,14 @@ def post_strategy(draw, forum=None, poster=None):
         isActive=is_active
     )
 
+# strategy to generate text that excludes surrogate and control characters
+# fixes error "'utf-8' codec can't encode character '\ud800' in position 0: surrogates not allowed"
+# help from https://hypothesis.works/articles/generating-the-right-data/
+@composite
+def safe_text_strategy(draw, min_size=1, max_size=500):
+    safe_chars = st.characters(blacklist_categories=['Cs'], blacklist_characters='\x00')
+    return draw(st.text(alphabet=safe_chars, min_size=min_size, max_size=max_size))
+
 # strategy for creating comment examples
 @composite
 def comment_strategy(draw, post=None, commenter=None):
@@ -70,9 +73,7 @@ def comment_strategy(draw, post=None, commenter=None):
         post = draw(post_strategy())
     if commenter is None:
         commenter = draw(user_strategy)
-    comment_text = draw(
-        text(characters(blacklist_characters='\x00'), min_size=1, max_size=500)
-    )
+    comment_text = draw(safe_text_strategy(min_size=1, max_size=500))
     score = draw(st.integers(min_value=-10, max_value=10))
     return Comment.objects.create(
         post=post,

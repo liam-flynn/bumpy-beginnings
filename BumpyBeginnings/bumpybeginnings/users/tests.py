@@ -7,6 +7,7 @@ from .models import SiteUser
 from hypothesis import settings
 from .strategies import site_user_strategy, user_strategy
 
+
 class UserViewsTest(HypothesisTestCase):
     # tst the get_details view
     @given(site_user=site_user_strategy())

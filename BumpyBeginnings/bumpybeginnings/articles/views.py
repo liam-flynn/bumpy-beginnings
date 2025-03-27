@@ -30,6 +30,7 @@ class ArticleListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Article.objects.all()
 
+
 @user_passes_test(lambda user: user.is_staff, login_url='/login/')
 def create_article(request):
     if request.method == 'POST':
@@ -41,6 +42,7 @@ def create_article(request):
         form = ArticleForm()
 
     return render(request, 'create_article.html', {'form': form, "breadcrumbs": get_breadcrumbs(request)})
+
 
 def view_article(request, article_id):
     # get the article by its id and make a note of the text
@@ -95,6 +97,7 @@ def edit_article(request, article_id):
 
     return render(request, 'edit_article.html', {'form': form, 'article': article, "breadcrumbs": get_breadcrumbs(request)})
 
+
 @login_required(login_url='/login')
 def user_articles(request):
     try:
@@ -113,6 +116,6 @@ def user_articles(request):
     articles = Article.objects.filter(
         Q(related_week__lte=pregnancy_week) | Q(related_week__isnull=True)
         # Order by week, then by newest
-        ).order_by('-related_week', '-creation_date')
+    ).order_by('-related_week', '-creation_date')
 
     return render(request, 'user_articles.html', {'articles': articles, 'pregnancy_week': pregnancy_week})

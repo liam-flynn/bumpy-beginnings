@@ -5,7 +5,8 @@ from django.utils import timezone
 
 # code based upon my AWD Final project with alterations
 class Notification(models.Model):
-    recipient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notifications')
+    recipient = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='notifications')
     notification_message = models.TextField()
     timestamp = models.DateTimeField(default=timezone.now)
     is_read = models.BooleanField(default=False)

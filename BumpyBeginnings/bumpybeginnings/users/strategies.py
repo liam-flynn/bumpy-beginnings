@@ -7,8 +7,10 @@ from django.utils.timezone import now
 from datetime import timedelta
 from hypothesis.strategies import text, characters
 
-#strategy to generate a User
+# strategy to generate a User
 user_strategy = from_model(User)
+
+
 
 # strategy to generate a SiteUser, ensuring a related User is created
 @st.composite
@@ -32,8 +34,9 @@ def site_user_strategy(draw, isForumMod=False):
     )
     return site_user
 
+
+
 # method for creating a quick user, i.e. one required to create a comment
 def create_siteuser(user, isForumMod=False):
     # Create a SiteUser for a given user.
     return SiteUser.objects.create(user=user, dueDate=now().date() + timedelta(days=30), isForumMod=isForumMod)
-

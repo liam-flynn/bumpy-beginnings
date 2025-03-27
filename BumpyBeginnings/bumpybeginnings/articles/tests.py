@@ -14,7 +14,8 @@ class ArticleViewsTest(HypothesisTestCase):
     # test ArticleListView
     def test_article_list_view(self):
         # make a admin account as only admins can access articles.html
-        self.client.force_login(User.objects.create_superuser("admin", "admin@bumpybeginnings.co.uk", "password"))
+        self.client.force_login(User.objects.create_superuser(
+            "admin", "admin@bumpybeginnings.co.uk", "password"))
         response = self.client.get(reverse("articles"))
         self.assertEqual(response.status_code, 200)
         # verify that the correct template was used and it included the object_list (articles)
@@ -24,7 +25,8 @@ class ArticleViewsTest(HypothesisTestCase):
     # test "Create Article" view
     @given(article=article_strategy)
     def test_create_article_view(self, article):
-        self.client.force_login(User.objects.create_superuser("admin", "admin@bumpybeginnings.co.uk", "password"))
+        self.client.force_login(User.objects.create_superuser(
+            "admin", "admin@bumpybeginnings.co.uk", "password"))
         # prepare the POST data from the article strategy
         post_data = {
             "title": article.title,
@@ -47,7 +49,8 @@ class ArticleViewsTest(HypothesisTestCase):
         # save the generated article to the database
         article.save()
         # try to view the article using the article id
-        response = self.client.get(reverse("view_article", kwargs={"article_id": article.id}))
+        response = self.client.get(
+            reverse("view_article", kwargs={"article_id": article.id}))
         # check to make sure the response is ok and the correct template has been used
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "view_article.html")
@@ -56,9 +59,10 @@ class ArticleViewsTest(HypothesisTestCase):
     # test "Edit Article" View
     @given(article=article_strategy)
     def test_edit_article_view(self, article):
-        self.client.force_login(User.objects.create_superuser("admin", "admin@bumpybeginnings.co.uk", "password"))
+        self.client.force_login(User.objects.create_superuser(
+            "admin", "admin@bumpybeginnings.co.uk", "password"))
         # save the article to the database
-        article.save()  
+        article.save()
         # strip any trailing whitespace
         updated_title = "Updated " + article.title.strip()
         # prepare post data
@@ -66,15 +70,16 @@ class ArticleViewsTest(HypothesisTestCase):
             "title": updated_title,
             "subtitle": article.subtitle,
             "text": article.text,
-            "source": article.source if article.source is not None else "", 
-            "related_week": article.related_week if article.related_week is not None else "",  
+            "source": article.source if article.source is not None else "",
+            "related_week": article.related_week if article.related_week is not None else "",
         }
 
         # send a post request to edit the article
-        response = self.client.post(reverse("edit_article", kwargs={"article_id": article.id}), post_data)
+        response = self.client.post(
+            reverse("edit_article", kwargs={"article_id": article.id}), post_data)
 
         # check that a redirect happens after the amendment (back to the articles list)
-        self.assertEqual(response.status_code, 302) 
+        self.assertEqual(response.status_code, 302)
         # reload the article from the database
         article.refresh_from_db()
         # ensure the article was updated
@@ -84,11 +89,13 @@ class ArticleViewsTest(HypothesisTestCase):
     @settings(deadline=500)
     @given(article=article_strategy)
     def test_delete_article_view(self, article):
-        self.client.force_login(User.objects.create_superuser("admin", "admin@bumpybeginnings.co.uk", "password"))
+        self.client.force_login(User.objects.create_superuser(
+            "admin", "admin@bumpybeginnings.co.uk", "password"))
         # save the article to the database
         article.save()
         # check to see if the article can be deleted using the created article id
-        response = self.client.post(reverse("delete_article", kwargs={"article_id": article.id}))
+        response = self.client.post(
+            reverse("delete_article", kwargs={"article_id": article.id}))
         # redirect on successful deletion
         self.assertEqual(response.status_code, 302)
         self.assertFalse(Article.objects.filter(id=article.id).exists())

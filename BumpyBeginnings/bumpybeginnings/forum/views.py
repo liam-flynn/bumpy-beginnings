@@ -114,7 +114,7 @@ class PostDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # get all the comments linked to the post
-        comments = self.object.comments.all()
+        comments = self.object.comments.all().order_by('createdOn')
         # get all the votes the user had performed on those comments
         user_votes = {}
         if self.request.user.is_authenticated:

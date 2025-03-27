@@ -34,5 +34,14 @@
     "description": "Sometimes they just won't sleep. Share your tips for tired parents.",
     "isLive": true
   }
+},
+{
+  "model": "forum.forum",
+  "pk": 9,
+  "fields": {
+    "forumName": "Working From Home with a Baby",
+    "description": "Hear you can discuss your tips, issues and advise for balancing both work and childcare at the same time.",
+    "isLive": true
+  }
 }
 ]

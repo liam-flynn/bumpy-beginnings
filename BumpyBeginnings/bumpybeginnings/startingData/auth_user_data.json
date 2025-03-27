@@ -1,28 +1,10 @@
 [
 {
   "model": "auth.user",
-  "pk": 1,
-  "fields": {
-    "password": "",
-    "last_login": "2025-03-03T16:53:37.291Z",
-    "is_superuser": false,
-    "username": "LiamFlynn",
-    "first_name": "Liam",
-    "last_name": "Flynn",
-    "email": "liam_flynn@live.com",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2024-11-21T22:00:21.642Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
   "pk": 34,
   "fields": {
-    "password": "pbkdf2_sha256$870000$wnrHA7JC8Muabot4m67Etu$hA6sKocUvp8Y+EKPYR1WEnFgD1eo/fgQNWW+NqJ1rcc=",
-    "last_login": "2024-11-24T18:49:14.059Z",
+    "password": "pbkdf2_sha256$600000$Au53mcvXcdkDC7Nvlcw01b$zaXAxMdMdPROlMne97BZ35Pk9J3GeToLe8FeWvcPlrs=",
+    "last_login": "2025-03-27T14:50:03.879Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
@@ -55,70 +37,16 @@
 },
 {
   "model": "auth.user",
-  "pk": 36,
-  "fields": {
-    "password": "!7upEI4UgHPoxYHBeks6n4NLqcORTAS3pxN5D7Zva",
-    "last_login": "2025-02-18T21:51:55.813Z",
-    "is_superuser": false,
-    "username": "LiamTheUser",
-    "first_name": "Liam",
-    "last_name": "Flynn",
-    "email": "liamflynn1991@gmail.com",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2024-11-24T18:53:36.321Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 37,
-  "fields": {
-    "password": "",
-    "last_login": "2025-03-03T21:29:26.688Z",
-    "is_superuser": false,
-    "username": "LiamFlynnTest",
-    "first_name": "Liam",
-    "last_name": "Flynn",
-    "email": "liam_flynn@live.com",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2024-11-26T21:26:25.653Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 38,
-  "fields": {
-    "password": "!TfNmf2vag5CzprJaaJBBD5r2djJtTVH445xVdGyO",
-    "last_login": "2024-12-27T21:16:16.726Z",
-    "is_superuser": false,
-    "username": "SarahTheMod",
-    "first_name": "Rats",
-    "last_name": "",
-    "email": "rats.in.the.walls.91@gmail.com",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2024-11-27T21:15:55.148Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
   "pk": 39,
   "fields": {
     "password": "pbkdf2_sha256$870000$hUsDLzXJPjOS9tBYBQXoM1$2IuhB2//lM4oSWIGxvpVtpx83rkCbNVnHbl6MyGjEv4=",
-    "last_login": "2025-03-03T21:27:43.437Z",
+    "last_login": "2025-03-24T11:23:03.059Z",
     "is_superuser": false,
     "username": "LiamFlynnTwo",
     "first_name": "Liam",
     "last_name": "Flynn",
     "email": "liam.flynn@zyrofisher.co.uk",
-    "is_staff": true,
+    "is_staff": false,
     "is_active": true,
     "date_joined": "2024-12-02T20:34:59.405Z",
     "groups": [],
@@ -129,8 +57,8 @@
   "model": "auth.user",
   "pk": 40,
   "fields": {
-    "password": "pbkdf2_sha256$870000$8JQy6ISMWjI6WZ08IvOQWd$+pTvlVPBkIQxiBEzXsA09lqhPw7xoBC2becoEtmLZSg=",
-    "last_login": "2025-03-04T10:50:39.504Z",
+    "password": "pbkdf2_sha256$600000$Sxz0l5PXuCYCSKJYhcS8jv$8N4F/8vJEFygDTReQZilNGwzsyxyaxlSuwaADqBMu1o=",
+    "last_login": "2025-03-26T16:27:31.444Z",
     "is_superuser": false,
     "username": "LiamFlynnThree",
     "first_name": "Sarah",
@@ -139,6 +67,96 @@
     "is_staff": false,
     "is_active": true,
     "date_joined": "2025-03-03T21:36:44.197Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 41,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$gyvkzvTsqMhJRo6m0sSoI1$SVzrkvt8de6E5xVmQrl8QRg1xZ0iWQ7FPkKg4OWmU+I=",
+    "last_login": "2025-03-27T14:12:49.188Z",
+    "is_superuser": false,
+    "username": "SleeplessParent",
+    "first_name": "Emma",
+    "last_name": "Caldwell",
+    "email": "SleeplessParent@bumpybeginnings.co.uk",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-03-26T21:34:13.561Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 42,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$z97NwyTAAArGXlh4sZdj8n$eDqtbKIRfOVCs2FAV36FNWjLUBqwskj3dvx7TIuxcn4=",
+    "last_login": "2025-03-27T11:07:01.008Z",
+    "is_superuser": false,
+    "username": "DadModeActivated",
+    "first_name": "Benjamin",
+    "last_name": "Calloway",
+    "email": "DadModeActivated@bumpybeginnings.co.uk",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-03-26T21:35:35.648Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 43,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$7nwaRxnbtDyy20fVmvJRMi$7M9B/8/S1qB9o2ns+zhbaMLCV5fMwO+ZoS0dH4l0UYU=",
+    "last_login": "2025-03-27T11:04:48.496Z",
+    "is_superuser": false,
+    "username": "RaisingTinyHumans",
+    "first_name": "Lily",
+    "last_name": "Montague",
+    "email": "RaisingTinyHumans@bumpybeginnings.co.uk",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-03-26T21:41:53.042Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 44,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$0DY0kQOnrxjk7Cab5IbUT3$4lYtSxJELe/1NaV4WuQ//nntkITi0H1PDmXW/lvjSA0=",
+    "last_login": "2025-03-27T14:14:22.776Z",
+    "is_superuser": false,
+    "username": "MomBrainMoments",
+    "first_name": "Zoe",
+    "last_name": "Kensington",
+    "email": "MomBrainMoments@bumpybeginnings.co.uk",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-03-26T21:46:18.350Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 45,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$u3uUWaypL0LCzXjEhilu6A$vJRP/Gn9yDWInIjFOSSpuAPRa56HF575pZP162cSrUQ=",
+    "last_login": "2025-03-27T14:49:25.558Z",
+    "is_superuser": false,
+    "username": "moderator",
+    "first_name": "Sarah",
+    "last_name": "Flynn",
+    "email": "moderator@bumpybeginnings.co.uk",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-03-27T14:49:20.668Z",
     "groups": [],
     "user_permissions": []
   }

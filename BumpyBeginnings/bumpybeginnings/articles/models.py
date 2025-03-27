@@ -4,27 +4,31 @@ from django_bleach.models import BleachField
 from django.core.exceptions import ValidationError
 import os
 
+
 class Article(models.Model):
     title = models.CharField(max_length=255, blank=False, null=False)
     subtitle = models.CharField(max_length=255, blank=True, null=True)
-    text = BleachField(allowed_tags=['a', 'ul', 'ol', 'li', 'strong', 'em', 'u', 'p', 'br', 'span'])
+    text = BleachField(
+        allowed_tags=['a', 'ul', 'ol', 'li', 'strong', 'em', 'u', 'p', 'br', 'span'])
     creation_date = models.DateTimeField(default=now, editable=False)
     last_updated = models.DateTimeField(auto_now=True)
     source = models.URLField(max_length=500, blank=True, null=True)
     related_week = models.PositiveIntegerField(
         blank=True,
         null=True)
-    image = models.ImageField(upload_to='article_images/', blank=True, null=True)
-    
+    image = models.ImageField(
+        upload_to='article_images/', blank=True, null=True)
+
     def __str__(self):
         return self.title
-    
 
     def save(self, *args, **kwargs):
         if not self.title.strip():
-            raise ValidationError("The title cannot be blank or contain only whitespace.")
+            raise ValidationError(
+                "The title cannot be blank or contain only whitespace.")
         if not self.text.strip():
-            raise ValidationError("The text content cannot be blank or contain only whitespace.")
+            raise ValidationError(
+                "The text content cannot be blank or contain only whitespace.")
 
         # check if there's an existing instance with this ID
         if self.pk:

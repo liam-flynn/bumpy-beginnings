@@ -19,7 +19,8 @@ def development_milestone_strategy(draw):
         )
     else:
         start_age_months = draw(st.integers(min_value=0, max_value=36))
-        end_age_months = draw(st.integers(min_value=start_age_months + 1, max_value=48))
+        end_age_months = draw(st.integers(
+            min_value=start_age_months + 1, max_value=48))
         return DevelopmentMilestone(
             stage=stage,
             week=None,

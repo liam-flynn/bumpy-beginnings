@@ -6,12 +6,15 @@ from forum.models import Comment, Vote
 from .models import Notification
 
 # create a new notification every time a new comment is created
+
+
 @receiver(post_save, sender=Comment)
 def comment_created(sender, instance, created, **kwargs):
     if created:
         recipient = instance.post.poster
         message = f"{instance.commenter.username} has commented on your post '{instance.post.postTitle}'"
-        Notification.objects.create(recipient=recipient, notification_message=message)
+        Notification.objects.create(
+            recipient=recipient, notification_message=message)
 
 
 @receiver(pre_save, sender=Vote)
@@ -33,6 +36,7 @@ def flag_vote_type_change(sender, instance, **kwargs):
         if instance.vote_type and instance.vote_type.lower() == "upvote":
             instance._trigger_notification = True
 
+
 @receiver(post_save, sender=Vote)
 def comment_upvote(sender, instance, created, **kwargs):
     postTitle = instance.comment.post.postTitle
@@ -40,7 +44,9 @@ def comment_upvote(sender, instance, created, **kwargs):
     message = f"Your comment in '{postTitle}' just received an upvote!"
     # for a newly created vote, if vote_type is "upvote"
     if created and instance.vote_type and instance.vote_type.lower() == "upvote":
-        Notification.objects.create(recipient=recipient, notification_message=message)
+        Notification.objects.create(
+            recipient=recipient, notification_message=message)
     # for an update, check if our pre_save flagged the change.
     elif not created and getattr(instance, '_trigger_notification', False):
-        Notification.objects.create(recipient=recipient, notification_message=message)
+        Notification.objects.create(
+            recipient=recipient, notification_message=message)

@@ -14,7 +14,8 @@ def get_breadcrumbs(request):
             else:
                 breadcrumbs.append(("Forum Posts", f"/forums/{path_parts[1]}"))
             if len(path_parts) == 4 and path_parts[3].isdigit():
-                breadcrumbs.append(("Post Page", f"/forums/{path_parts[1]}/posts/{path_parts[3]}"))
+                breadcrumbs.append(
+                    ("Post Page", f"/forums/{path_parts[1]}/posts/{path_parts[3]}"))
 
     # "Calculator" breadcrumbs
     if path_parts and path_parts[0] == "calculator":
@@ -43,6 +44,5 @@ def get_breadcrumbs(request):
                 breadcrumbs.append(("View Milestone", None))
             elif path_parts[2] == "edit":
                 breadcrumbs.append(("Edit Milestone", None))
-    
-    
+
     return breadcrumbs

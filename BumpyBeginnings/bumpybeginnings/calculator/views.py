@@ -8,6 +8,8 @@ from bumpybeginnings.breadcrumbs import get_breadcrumbs
 from django.contrib.auth.decorators import login_required
 
 # only staff members should be able to access the create benefit page
+
+
 @user_passes_test(lambda user: user.is_staff, login_url='/')
 def create_benefit(request):
     if request.method == "POST":
@@ -19,10 +21,12 @@ def create_benefit(request):
             return redirect("benefit_list")
         # if errors on the form, inform user via message
         else:
-            messages.error(request, "There were errors in the Benefit form. Please correct them and try again.")
+            messages.error(
+                request, "There were errors in the Benefit form. Please correct them and try again.")
     else:
         form = BenefitForm()
     return render(request, "create_benefit.html", {"benefit_form": form})
+
 
 @user_passes_test(lambda user: user.is_staff, login_url='/')
 def edit_benefit(request, benefit_id):
@@ -37,7 +41,8 @@ def edit_benefit(request, benefit_id):
             messages.success(request, "Benefit successfully amended")
             return redirect('benefit_list')
         else:
-            messages.error(request, "There were errors in the Benefit form. Please correct them and try again.")
+            messages.error(
+                request, "There were errors in the Benefit form. Please correct them and try again.")
     else:
         form = BenefitForm(instance=benefit)
     return render(request, 'edit_benefit.html', {'form': form, 'benefit': benefit})
@@ -61,10 +66,12 @@ def create_benefit_rate(request):
             messages.success(request, "New Benefit rate successfully created")
             return redirect("benefit_list")
         else:
-            messages.error(request, "There were errors in the Benefit Rate form. Please correct them and try again.")
+            messages.error(
+                request, "There were errors in the Benefit Rate form. Please correct them and try again.")
     else:
         form = BenefitRateForm()
     return render(request, "create_benefit_rate.html", {"rate_form": form})
+
 
 @user_passes_test(lambda user: user.is_staff, login_url='/')
 def edit_benefit_rate(request, rate_id):
@@ -78,7 +85,8 @@ def edit_benefit_rate(request, rate_id):
             messages.success(request, "Benefit rate successfully amended")
             return redirect('benefit_list')
         else:
-            messages.error(request, "There were errors in the Benefit Rate form. Please correct them and try again.")
+            messages.error(
+                request, "There were errors in the Benefit Rate form. Please correct them and try again.")
     else:
         form = BenefitRateForm(instance=rate)
     return render(request, 'edit_benefit_rate.html', {'form': form, 'rate': rate})
@@ -102,7 +110,8 @@ def create_eligibility_criteria(request):
             messages.success(request, "New Criteria successfully created")
             return redirect("benefit_list")
         else:
-            messages.error(request, "There were errors in the Eligibility Criteria form. Please correct them and try again.")
+            messages.error(
+                request, "There were errors in the Eligibility Criteria form. Please correct them and try again.")
     else:
         form = EligibilityCriteriaForm()
     return render(request, "create_eligibility_criteria.html", {"criteria_form": form})
@@ -120,7 +129,8 @@ def edit_eligibility_criteria(request, criteria_id):
             messages.success(request, "Criteria successfully amended")
             return redirect('benefit_list')
         else:
-            messages.error(request, "There were errors in the Eligibility Criteria form. Please correct them and try again.")
+            messages.error(
+                request, "There were errors in the Eligibility Criteria form. Please correct them and try again.")
     else:
         form = EligibilityCriteriaForm(instance=criteria)
     return render(request, 'edit_eligibility_criteria.html', {'form': form, 'criteria': criteria})
@@ -178,7 +188,8 @@ def questionnaire(request):
 
         # get all benefits with their criteria and rates
         # help from https://johnnymetz.com/posts/five-ways-to-get-django-objects-with-a-related-object/
-        benefits = Benefit.objects.prefetch_related("eligibility_criteria", "rates").all()
+        benefits = Benefit.objects.prefetch_related(
+            "eligibility_criteria", "rates").all()
 
         # loop through each benefit, checking if its criteria has been met
         for benefit in benefits:
@@ -197,7 +208,8 @@ def questionnaire(request):
                 # if the criterin is a boolean
                 if criterion.value_type == "boolean":
                     answer_bool = answer.lower() == "true" if answer else False
-                    criterion_value_bool = (criterion.value.lower() == "true") if criterion.value else False
+                    criterion_value_bool = (
+                        criterion.value.lower() == "true") if criterion.value else False
                     if criterion.match_type == "exact" and answer_bool != criterion_value_bool:
                         meets_all_criteria = False
                         break
@@ -237,13 +249,16 @@ def questionnaire(request):
                     if rate.income_threshold_min is not None and salary > float(rate.income_threshold_min):
                         # calculate the reduction unit. For every £200 above £50,000 benefit is reduced by x%
                         reduction_unit = round(
-                            float(rate.amount) * (1 - (1 - (float(rate.reduction_rate_per_unit) / 100.0))),
+                            float(
+                                rate.amount) * (1 - (1 - (float(rate.reduction_rate_per_unit) / 100.0))),
                             3
                         )
-                        # calculate by how many income units the user's salary exceeds the the minimum threshold 
-                        units = math.floor((salary - float(rate.income_threshold_min)) / float(rate.income_unit))
+                        # calculate by how many income units the user's salary exceeds the the minimum threshold
+                        units = math.floor(
+                            (salary - float(rate.income_threshold_min)) / float(rate.income_unit))
                         # finally calculate the amount
-                        calculated_amount = max(0, float(rate.amount) - (reduction_unit * units))
+                        calculated_amount = max(
+                            0, float(rate.amount) - (reduction_unit * units))
                     # if the benefit is not affected by a reduction,  just pass it back
                     else:
                         calculated_amount = float(rate.amount)
@@ -270,5 +285,5 @@ def questionnaire(request):
         for criteria in criterias:
             group = criteria.criterion
             grouped_criteria.setdefault(group, []).append(criteria)
-            
+
         return render(request, "questionnaire.html", {"grouped_criteria": grouped_criteria, "breadcrumbs": get_breadcrumbs(request)})

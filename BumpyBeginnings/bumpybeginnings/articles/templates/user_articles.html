@@ -1,8 +1,15 @@
 
 {% block content %}
 <div class="p-2 max-w-4xl mx-auto md:p-6">
-    <h1 class="text-2xl font-bold text-sky-900">Articles for Week {{ pregnancy_week }}</h1>
-
+    <h1 class="text-2xl font-bold text-sky-900">
+        Articles for 
+        {% if pregnancy_week > 40 %}
+            {{ pregnancy_week|add:"-40" }} weeks old
+        {% else %}
+            Week {{ pregnancy_week }} of pregnancy
+        {% endif %}
+         and Earlier
+    </h1>
     {% if articles %}
         <div class="space-y-4">
             {% for article in articles %}

@@ -16,6 +16,12 @@ def comment_created(sender, instance, created, **kwargs):
 
 @receiver(pre_save, sender=Vote)
 def flag_vote_type_change(sender, instance, **kwargs):
+
+    # when loading from a fixture (votes_data.json), import it as is.
+    # don't try to match with data that might not be loaded yet.
+    # https://docs.djangoproject.com/en/5.1/topics/db/fixtures/
+    if kwargs["raw"]:
+        return
     # check if the vote already existed
     if instance.pk:
         previous = Vote.objects.get(pk=instance.pk)

@@ -1,101 +1,5 @@
 [
 {
-  "model": "socialaccount.socialapp",
-  "pk": 1,
-  "fields": {
-    "provider": "facebook",
-    "provider_id": "",
-    "name": "Facebook",
-    "client_id": "1021988409693731",
-    "secret": "f38ccefd8ccde53e80d4b6abe328ba09",
-    "key": "",
-    "settings": {},
-    "sites": []
-  }
-},
-{
-  "model": "socialaccount.socialapp",
-  "pk": 2,
-  "fields": {
-    "provider": "google",
-    "provider_id": "",
-    "name": "Google",
-    "client_id": "604285495106-nkkk0mqpoji9dv0hneuqrkjg5c4ek9n2.apps.googleusercontent.com",
-    "secret": "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",
-    "key": "",
-    "settings": {},
-    "sites": []
-  }
-},
-{
-  "model": "socialaccount.socialaccount",
-  "pk": 1,
-  "fields": {
-    "user": 35,
-    "provider": "facebook",
-    "uid": "10164826125014129",
-    "last_login": "2024-12-01T18:54:55.999Z",
-    "date_joined": "2024-11-24T12:57:48.470Z",
-    "extra_data": {
-      "id": "10164826125014129",
-      "name": "Liam Flynn",
-      "last_name": "Flynn",
-      "first_name": "Liam"
-    }
-  }
-},
-{
-  "model": "socialaccount.socialaccount",
-  "pk": 2,
-  "fields": {
-    "user": 36,
-    "provider": "google",
-    "uid": "101336597371767736426",
-    "last_login": "2025-02-18T21:51:55.803Z",
-    "date_joined": "2024-11-24T18:53:36.332Z",
-    "extra_data": {
-      "aud": "604285495106-nkkk0mqpoji9dv0hneuqrkjg5c4ek9n2.apps.googleusercontent.com",
-      "azp": "604285495106-nkkk0mqpoji9dv0hneuqrkjg5c4ek9n2.apps.googleusercontent.com",
-      "exp": 1739919116,
-      "iat": 1739915516,
-      "iss": "https://accounts.google.com",
-      "sub": "101336597371767736426",
-      "name": "Liam Flynn",
-      "email": "liamflynn1991@gmail.com",
-      "at_hash": "KMuY8g7hm3B0T96hzpZIOA",
-      "picture": "https://lh3.googleusercontent.com/a/ACg8ocJgIjcJSGK6BXDnMN60eVllrY2BgvsNiQSVK9Ofww6sDBhKVQ=s96-c",
-      "given_name": "Liam",
-      "family_name": "Flynn",
-      "email_verified": true
-    }
-  }
-},
-{
-  "model": "socialaccount.socialaccount",
-  "pk": 3,
-  "fields": {
-    "user": 38,
-    "provider": "google",
-    "uid": "116862391692279474508",
-    "last_login": "2024-12-27T21:16:16.710Z",
-    "date_joined": "2024-11-27T21:15:55.160Z",
-    "extra_data": {
-      "aud": "604285495106-nkkk0mqpoji9dv0hneuqrkjg5c4ek9n2.apps.googleusercontent.com",
-      "azp": "604285495106-nkkk0mqpoji9dv0hneuqrkjg5c4ek9n2.apps.googleusercontent.com",
-      "exp": 1735337776,
-      "iat": 1735334176,
-      "iss": "https://accounts.google.com",
-      "sub": "116862391692279474508",
-      "name": "Rats",
-      "email": "rats.in.the.walls.91@gmail.com",
-      "at_hash": "z8zOiAdJssG7bdH2BlwibA",
-      "picture": "https://lh3.googleusercontent.com/a/ACg8ocJU4mJ4TdeE4_FoeYwTcTidujDvdf9vppqbqizvBs2Vk-6rzA=s96-c",
-      "given_name": "Rats",
-      "email_verified": true
-    }
-  }
-},
-{
   "model": "calculator.benefit",
   "pk": 1,
   "fields": {
@@ -371,110 +275,114 @@
 },
 {
   "model": "articles.article",
-  "pk": 2,
+  "pk": 41,
   "fields": {
-    "title": "New You, Baby & Tummy Time",
-    "subtitle": "New When can you start Tummy Time",
-    "text": "<p>We will dive in to when you are able to do tummy time</p>\n<ul>\n<li><strong>Now</strong></li>\n<li><em>Then</em></li>\n<li><span style=\"text-decoration: underline;\">When</span></li>\n<li><span style=\"text-decoration: underline;\">New</span></li>\n</ul>",
-    "creation_date": "2025-01-03T20:41:22.448Z",
-    "last_updated": "2025-01-03T21:07:22.530Z",
-    "source": "https://safetosleep.nichd.nih.gov/New/reduce-risk/tummy-time#:~:text=Tummy%20time%20tips&text=Babies%20benefit%20from%20having%20two,of%20total%20tummy%20time%20daily",
-    "related_week": 3,
-    "image": ""
-  }
-},
-{
-  "model": "articles.article",
-  "pk": 3,
-  "fields": {
-    "title": "This Is an article with an image",
-    "subtitle": "Look at this!",
-    "text": "<p>All this stuff is just filler</p>",
-    "creation_date": "2025-01-05T14:39:48.974Z",
-    "last_updated": "2025-01-06T21:37:14.805Z",
-    "source": null,
-    "related_week": 6,
-    "image": "article_images/EMP-690.jpg"
-  }
-},
-{
-  "model": "articles.article",
-  "pk": 4,
-  "fields": {
-    "title": "New Article",
-    "subtitle": "This is a subtitle",
-    "text": "<p>look at this!</p>",
-    "creation_date": "2025-01-06T20:24:13.986Z",
-    "last_updated": "2025-01-06T20:36:11.205Z",
-    "source": null,
-    "related_week": null,
-    "image": "article_images/Designer.jpeg"
-  }
-},
-{
-  "model": "articles.article",
-  "pk": 5,
-  "fields": {
-    "title": "This is new",
-    "subtitle": "try again",
-    "text": "<p>jhgjghjhgj gfdgd</p>",
-    "creation_date": "2025-01-06T20:48:08.759Z",
-    "last_updated": "2025-01-06T21:03:59.258Z",
-    "source": null,
-    "related_week": null,
-    "image": "article_images/Designer_F4bhSlU.jpeg"
-  }
-},
-{
-  "model": "articles.article",
-  "pk": 6,
-  "fields": {
-    "title": "vcxxcvxcv",
-    "subtitle": "try again",
-    "text": "<p>xczvcxvxcvxcv</p>",
-    "creation_date": "2025-01-06T22:02:01.960Z",
-    "last_updated": "2025-01-06T22:02:01.961Z",
-    "source": null,
-    "related_week": null,
-    "image": ""
-  }
-},
-{
-  "model": "articles.article",
-  "pk": 39,
-  "fields": {
-    "title": "This is a personalised test",
+    "title": "First trimester – Dealing with tiredness",
     "subtitle": null,
-    "text": "<p>{{ pregnant_person }} may be suffering from morning sickness at this stage.</p>",
-    "creation_date": "2025-01-10T21:01:14.275Z",
-    "last_updated": "2025-01-10T21:05:10.431Z",
-    "source": null,
-    "related_week": 3,
+    "text": "<p><strong>{{ your }}</strong> <strong>body goes through a lot of changes in the nine months of pregnancy &ndash; from fluctuating hormone levels to gaining extra weight.</strong></p>\n<p>And while you&rsquo;re bound to feel some discomfort, there are ways to soothe, adjust and manage it &ndash; we spoke to&nbsp;Grace Ford, a midwife at the Manchester University NHS Foundation Trust, to find out more.</p>\n<p>&ldquo;Lots of things can affect how comfortable you are able to be in pregnancy,&rdquo; Grace explains.</p>\n<p>&ldquo;This may include how many weeks into your pregnancy you are, how much rest you get, if you are on your feet a lot, or how many babies you are having.&rdquo;</p>\n<p>&ldquo;There is no &lsquo;right&rsquo; way to feel, and everyone is different. You should always speak to your midwife or doctor if you are worried or need help with feeling uncomfortable.&rdquo;</p>\n<p>&ldquo;It is common to&nbsp;<strong>feel tired</strong>&nbsp;in the first trimester due to hormone changes, so listen to your body and look after yourself.</p>\n<p>&ldquo;And while there is no &lsquo;quick fix&rsquo; to tiredness, there are ways you can listen to your body and look after yourself&hellip;</p>\n<p>&ldquo;Try to get&nbsp;<strong>as much sleep as you can</strong> at night and nap during the day if you need to.\"</p>\n<p>&ldquo;<strong>Avoid foods that contain refined sugar as much as possible</strong>, as these cause dips in your blood sugar levels, which make you feel tired. It is better to eat complex carbohydrates such as oats, brown rice and wholegrain pastas.</p>\n<p>&ldquo;<strong>Food that is high in protein like meat, beans and pulses</strong>&nbsp;can make you feel fuller for longer and release energy more slowly throughout the day, helping you feel less tired.</p>\n<p>&ldquo;If you are dehydrated, it can make fatigue worse, so make sure you&nbsp;<strong>drink plenty of water throughout the day.</strong></p>\n<p>&ldquo;Some women may be eligible to apply for&nbsp;<strong>The Healthy Start Scheme</strong> which can support a healthy and nutritious diet in pregnancy and until your child is four years old. This can be applied for from 10 weeks of pregnancy.</p>",
+    "creation_date": "2025-03-05T14:17:21.693Z",
+    "last_updated": "2025-03-05T16:04:26.255Z",
+    "source": "https://www.bbc.co.uk/tiny-happy-people/articles/zjfp8p3",
+    "related_week": 13,
+    "image": "article_images/p0kmscxk.png"
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 42,
+  "fields": {
+    "title": "10 common health problems in pregnancy",
+    "subtitle": "Most people know pregnancy (morning) sickness is a common symptom in pregnancy. Here are some others that you may not be aware of.",
+    "text": "<p><strong>1. Bleeding gums in pregnancy</strong></p>\n<p>Have you noticed your gums bleeding when you brush your teeth? Bleeding gums in pregnancy could be a condition called gingivitis. Hormones can make your teeth more vulnerable to plaque, leaving you with swollen, bleeding gums.</p>\n<p>These are some things you can do to take extra care of your smile when you&rsquo;re pregnant:</p>\n<ul>\n<li>book a dentist appointment</li>\n<li>ask your dentist about getting a professional clean</li>\n<li>brush your teeth twice a day for 2 minutes</li>\n<li>avoid sugary and acidic drinks and foods</li>\n<li>stop smoking &ndash; there&rsquo;s&nbsp;<a href=\"https://www.tommys.org/pregnancy-information/im-pregnant/smoking-and-pregnancy/get-help-stop-smoking\">lots of support available</a>&nbsp;if you need it.</li>\n</ul>\n<p>If you have&nbsp;<a href=\"https://www.tommys.org/pregnancy-information/im-pregnant/early-pregnancy/morning-sickness-and-hyperemesis-gravidarum\">pregnancy (morning) sickness</a>, rinse your mouth with water after being sick &ndash; try to wait an hour before you brush your teeth (they&rsquo;ll be softened by the acid in your tummy).&nbsp;</p>\n<p>Don't forget to ask your midwife for a maternity exemption certificate. This will let you get free dental care and prescriptions during pregnancy and for 1 year after your baby&rsquo;s birth.</p>\n<p><strong>2. Leg cramps in pregnancy</strong></p>\n<p>Cramps can be common in pregnancy. Leg cramps are sudden, sharp pains, usually in the lower leg.</p>\n<p>It may help to try to stretch your leg and move your ankle up and down during a cramp. Gentle stretches and trying not to point your toes down when lying down may help prevent cramps.</p>\n<p>Speak to your midwife or GP if:</p>\n<ul>\n<li>leg cramps are disturbing your sleep&nbsp;</li>\n<li>you have numbness or swelling in your legs</li>\n<li>cramps last longer than 10 minutes</li>\n<li>if you have any other symptoms or concerns.&nbsp;</li>\n</ul>\n<p>Some people get&nbsp;<a href=\"https://www.tommys.org/pregnancy-information/im-pregnant/restless-legs-syndrome\">restless legs syndrome</a>&nbsp;in pregnancy, usually in the third trimester.&nbsp;</p>\n<p><strong>3. Feeling faint in pregnancy</strong></p>\n<p>Been feeling slightly dizzy or faint? This may be due to hormonal changes, low blood pressure &nbsp;or getting too hot (see next symptom). Here are some useful tips:</p>\n<ul>\n<li>get up slowly after sitting or lying down</li>\n<li>as soon as you feel faint, find a seat quickly &ndash; if the faintness doesn&rsquo;t pass, lie down on your side.</li>\n<li>turn on your side if you feel faint while lying on your back (It&rsquo;s best to sleep on your side when you reach your third trimester.&nbsp;<a href=\"https://www.tommys.org/pregnancy-information/im-pregnant/sleep-side/sleep-side-pregnancy-campaign\">Research shows that this can reduce the risk of stillbirth</a>.) &nbsp;</li>\n<li>stay hydrated by drinking plenty of water.&nbsp;</li>\n</ul>\n<p>Talk to your midwife or doctor if you are feeling dizzy or faint.&nbsp;</p>\n<p><strong>4. Feeling hot in pregnancy</strong></p>\n<p>Your body pumps more blood in pregnancy, which alongside hormones can make you feel hot. It may help to:</p>\n<ul>\n<li>use a desk fan for work and your bedroom</li>\n<li>carry a small, battery-operated fan around with you</li>\n<li>wear loose, breathable fabrics</li>\n<li><a href=\"https://www.tommys.org/pregnancy-information/im-pregnant/nutrition-in-pregnancy/how-much-water-should-i-drink-pregnancy\">stay hydrated</a>&nbsp;and always have a bottle of water with you</li>\n<li>take a dip in a refreshing bath or go for a swim.</li>\n</ul>\n<p>Some people&nbsp;<a href=\"https://www.tommys.org/pregnancy-information/im-pregnant/ask-a-midwife/why-do-i-feel-cold-pregnancy\">feel colder during pregnancy</a>. This does not necessarily mean that there is anything wrong. But if you have any concerns, it&rsquo;s always best to call your midwife or doctor.</p>\n<p><strong>5. Headaches in pregnancy</strong></p>\n<p>Headaches can be common in early pregnancy and usually improve as your pregnancy progresses. It may help to:</p>\n<ul>\n<li>try and rest when you can</li>\n<li>keep hydrated</li>\n<li>find ways to relax.</li>\n</ul>\n<p>Paracetamol is safe to take in pregnancy. Make sure you only take the recommended dose and take it for the shortest possible time.&nbsp;<strong>Do not</strong>&nbsp;take codeine or ibuprofen &ndash; unless prescribed by your doctor. &nbsp;&nbsp;</p>\n<p>Call your midwife, GP or maternity unit if you have a severe headache that does not go away. This can be a sign of pre-eclampsia, which can cause serious complications in pregnancy.</p>\n<p>6. Indigestion and heartburn in pregnancy</p>\n<p>Hormones and, later in pregnancy, your womb pressing on your stomach can cause:</p>\n<ul>\n<li>heartburn &ndash; a painful burning feeling in the chest, often after eating</li>\n<li>feeling full and bloated</li>\n<li>nausea (feeling sick)</li>\n<li>burping and farting</li>\n<li>bitter-tasting fluids into your mouth or bringing up food.</li>\n</ul>\n<p>There are some things you can do that may help relieve your symptoms:</p>\n<ul>\n<li>make a note of what makes you feel worse and avoid these foods, especially in the evenings (spicy foods, chocolate and fruit juice are often to blame)</li>\n<li>eat a&nbsp;<a href=\"https://www.tommys.org/pregnancy-information/im-pregnant/nutrition-in-pregnancy/balanced-diet-pregnancy\">healthy, balanced diet</a></li>\n<li>try eating smaller meals often</li>\n<li>sit up straight when you&rsquo;re eating to take the pressure of your stomach</li>\n<li>finish eating about 3 hours before bedtime</li>\n<li><a href=\"https://www.tommys.org/pregnancy-information/im-pregnant/smoking-and-pregnancy\">don&rsquo;t smoke</a>&nbsp;(there is support available if you need it)</li>\n<li><a href=\"https://www.tommys.org/pregnancy-information/im-pregnant/eating-well-pregnancy/alcohol\">don&rsquo;t drink alcohol</a>.&nbsp;</li>\n</ul>\n<p>Speak to your midwife or GP if your heartburn is severe and the ideas above don&rsquo;t help you feel better.&nbsp;</p>\n<p><strong>7. Swollen ankles, hands and feet in pregnancy</strong></p>\n<p>Your body holds more water in pregnancy, which can move towards the lowest parts of your body making your ankles, hands and feet swell. Try to:</p>\n<ul>\n<li>avoid standing for long periods of time</li>\n<li>prop your feet up so they&rsquo;re higher than your heart for about an hour each day</li>\n<li>wear comfortable shoes and socks</li>\n<li>do some stretches such as pointing your toes down and releasing upwards 30 times, then circle each foot 8 times&nbsp;</li>\n<li>drink lots of water</li>\n<li>take some&nbsp;<a href=\"https://www.tommys.org/pregnancy-information/im-pregnant/being-healthy/exercise\">gentle exercise</a>.</li>\n</ul>\n<p>Call your midwife, GP or maternity unit if you have a sudden increase in swelling, particularly in your hands face or feet. This can be a sign of&nbsp;<a href=\"https://www.tommys.org/pregnancy-information/pregnancy-complications/pre-eclampsia-information-and-support\">pre-eclampsia</a>, which can cause serious complications in pregnancy.&nbsp;</p>\n<p><strong>8. Constipation in pregnancy</strong></p>\n<p>Pregnancy hormones can play havoc with your digestive system, leaving you constipated. Here are some tips:</p>\n<ul>\n<li>Make sure you&rsquo;re getting enough fibre. Eat lots of fruit and vegetables, pulses, wholemeal breads and cereals.</li>\n<li>Drink plenty of water.&nbsp;</li>\n<li>Stay active. This doesn&rsquo;t have to be strenuous. Regular light or moderate exercise, such as&nbsp;<a href=\"https://www.tommys.org/pregnancy-information/im-pregnant/exercise-in-pregnancy/walking-and-pregnancy\">walking</a>&nbsp;or&nbsp;<a href=\"https://www.tommys.org/pregnancy-information/im-pregnant/exercise-in-pregnancy/swimming-pregnancy\">swimming</a>&nbsp;may help.</li>\n<li>If you&rsquo;re taking iron supplements (which can make you constipated), talk to your GP about your options.&nbsp;</li>\n</ul>\n<p>Talk to your midwife or GP if you are still struggling with constipation after making these changes.&nbsp;</p>\n<p><strong>9. Diarrhoea</strong></p>\n<p>Diarrhoea in pregnancy can be caused by hormone changes, a tummy bug or food poisoning. Find out more about&nbsp;<a href=\"https://www.tommys.org/pregnancy-information/pregnancy-symptom-checker/diarrhoea-and-vomiting-pregnancy\">diarrhoea in pregnancy</a>&nbsp;and how to look after yourself.</p>\n<p>Loperamide (also known as Imodium or dioraleze) is not usually recommended in pregnancy. This is because there is not enough information to say whether it is safe or not.&nbsp;<strong>Do not</strong>&nbsp;take this medicine to treat diarrhoea without speaking to your midwife or doctor first. &nbsp;</p>\n<p>Rarely, diarrhoea can be caused by an infection called listeria, which can be dangerous in pregnancy. Speak to your midwife, doctor or NHS 111 if you have diarrhoea and:</p>\n<ul>\n<li>a&nbsp;<a href=\"https://www.tommys.org/pregnancy-information/pregnancy-symptom-checker/high-temperature-pregnancy\">high temperature</a>&nbsp;of 38C or above</li>\n<li>aches and pains</li>\n<li>chills</li>\n<li>are feeling or being sick.&nbsp;</li>\n</ul>\n<p>Find out more about&nbsp;<a href=\"https://www.tommys.org/pregnancy-information/pregnancy-complications/infections/infections-pregnancy\">infections in pregnancy</a>&nbsp;and how to avoid them.&nbsp;</p>\n<p><strong>10. Piles</strong></p>\n<p>Some women get piles during pregnancy. These are swellings containing enlarged blood vessels inside or around the bottom. Anyone can get piles, but they happen in pregnancy because hormone make your veins relax.</p>\n<p>Symptoms of piles can include:</p>\n<ul>\n<li>itching, aching, soreness or swelling around your anus</li>\n<li>pain when passing a stool (faeces, poo) and a mucus discharge afterwards</li>\n<li>a lump hanging outside the anus, which may need to be pushed back in after passing a stool</li>\n<li>bleeding after passing a stool &ndash; the blood is usually bright red.</li>\n</ul>\n<p>Piles can cause constipation. Try to drink plenty of water and eat plenty of fibre such as:</p>\n<ul>\n<li>wholemeal bread</li>\n<li>fruit</li>\n<li>vegetables.</li>\n</ul>\n<p>Talk to your midwife, doctor or pharmacist about how to manage piles. Don&rsquo;t use a cream or medicine without checking with them first.&nbsp;</p>",
+    "creation_date": "2025-03-26T15:34:27.591Z",
+    "last_updated": "2025-03-26T15:36:01.576Z",
+    "source": "https://www.tommys.org/pregnancy-information/im-pregnant/early-pregnancy/10-common-health-problems-in-pregnancy",
+    "related_week": 16,
     "image": ""
   }
 },
 {
   "model": "articles.article",
-  "pk": 40,
+  "pk": 43,
   "fields": {
-    "title": "the",
-    "subtitle": "This is a subtitle",
-    "text": "<p>fefd</p>",
-    "creation_date": "2025-01-18T15:09:28.794Z",
-    "last_updated": "2025-01-18T15:09:28.840Z",
-    "source": null,
-    "related_week": 1,
+    "title": "Morning sickness (pregnancy sickness)",
+    "subtitle": null,
+    "text": "<p>It's very common to feel sick during the first few months of pregnancy, and sometimes even longer. It can happen at any time of the day and is now usually called pregnancy sickness. We use &lsquo;morning sickness&rsquo; here as lots of people still call it this and we want them to find this information.<br><br><strong>What is morning sickness?</strong></p>\n<p>Morning sickness or pregnancy sickness are the names used for nausea and vomiting in pregnancy.</p>\n<p>It is probably caused by a hormone called GDF-15. Levels of GDF-15 rise during pregnancy. Some people are more sensitive to this hormone than others.</p>\n<p>It often at its worst when you first wake up, which is why it is sometimes called morning sickness. However, feeling sick or being sick (vomiting) can happen at any time of day.</p>\n<p>Morning sickness is usually worse during the first 12 weeks&nbsp;<a href=\"https://www.tommys.org/pregnancy-information/im-pregnant/week-by-week/first-trimester\">(first trimester</a>). It usually clears up by weeks&nbsp;<a href=\"https://www.tommys.org/pregnancy-information/im-pregnant/pregnancy-week-by-week/16-weeks-pregnant\">16 to 20 of your pregnancy</a>, although it can go on for longer for some people. It is sometimes classed as mild, or moderate to severe.&nbsp;<a href=\"https://www.tommys.org/pregnancy-information/im-pregnant/week-by-week/first-trimester\">Read more about these classifications here</a>. &nbsp;</p>\n<p>Very severe pregnancy sickness is called hyperemesis gravidarum. Read more about&nbsp;<a href=\"https://www.tommys.org/pregnancy-information/pregnancy-complications/hyperemesis-gravidarum-hg\">hyperemesis gravidarum here</a>.</p>\n<p>Morning sickness does not put your baby at risk.</p>\n<p>Some people worry because they don&rsquo;t feel sick during their pregnancy. They may think that their pregnancy is somehow not strong enough or that they are more likely to miscarry. This is not true.&nbsp;<a href=\"https://www.tommys.org/pregnancy-information/im-pregnant/pregnancy-week-by-week/16-weeks-pregnant\">Pregnancy symptoms</a> are different for everyone. Not everyone will feel sick or vomit.</p>\n<p>&ldquo;During my first viable pregnancy, 1 month after a 12-week miscarriage, I experienced no sickness at all. This made me always worry I was going to miscarry again. Thankfully it did not happen, and I have a very healthy and active 18-month-old now! My second viable pregnancy was completely the opposite and I still get waves of nausea at 37 weeks.\" -&nbsp;Kristina<br><br></p>\n<p><strong>Morning sickness remedies</strong></p>\n<p>There are things you can do to manage nausea and vomiting in pregnancy. There is not a lot of research evidence to say that these stop the sickness, but people have said that they found them helpful. &nbsp;You could try:</p>\n<ul>\n<li>eating little and often &ndash; eating 6 small meals a day instead of 3 big meals</li>\n<li>resting &ndash; pregnancy sickness may feel worse when you&rsquo;re tired, so try to rest if you&rsquo;re not feeling well</li>\n<li>avoiding foods with lots of sugar or saturated fats &ndash; this includes sweets, chocolate and red meat</li>\n<li>eating carbohydrates &ndash; things like bread, rice, potatoes and pasta can be easier to eat when you&rsquo;re feeling nauseous</li>\n<li>keeping away from sickness &lsquo;triggers&rsquo; &ndash; you may find that eating or even smelling certain food makes you feel sick &nbsp;</li>\n<li>having a small snack before getting up in the morning &ndash; something like dry toast, crackers or a plain biscuit is great for lining your stomach before you begin your day</li>\n<li>having foods or drinks that have ginger in them &ndash; there is some evidence that things like ginger biscuits, crystallised ginger or ginger tea can help you feel a little less queasy</li>\n<li>wearing plastic acupressure bands throughout the day &ndash; these are available in most pharmacies and have a plastic button that presses on the acupressure point on the wrist, which may help reduce your nausea.</li>\n</ul>",
+    "creation_date": "2025-03-26T15:52:23.691Z",
+    "last_updated": "2025-03-26T15:53:16.187Z",
+    "source": "https://www.tommys.org/pregnancy-information/im-pregnant/early-pregnancy/morning-sickness",
+    "related_week": 6,
     "image": ""
   }
 },
 {
-  "model": "notifications.notification",
-  "pk": 1,
+  "model": "articles.article",
+  "pk": 44,
   "fields": {
-    "recipient": 38,
-    "notification_message": "LiamFlynn has commented on your post '£6.00 of Pamper's Nappy packs'",
-    "timestamp": "2025-02-19T21:07:51.095Z",
-    "is_read": false
+    "title": "Am I pregnant?",
+    "subtitle": "Wondering when to take a pregnancy test? Some of the home tests can tell you if you're pregnant after about 3 and a half weeks – and are 99% accurate.",
+    "text": "<p>Early pregnancy symptoms (at 4 weeks)</p>\n<p>To start with, {{ you }} may not have any symptoms at all.</p>\n<p>When the pregnancy hormone \"human chorionic gonadotrophin\" starts to kick in, {{ you }} may experience early pregnancy symptoms.</p>\n<p>During {{ your }} 1st trimester, which is up until week 12, {{ you }} may experience:</p>\n<ul>\n<li>a missed period (often one of the first signs of pregnancy)</li>\n<li>a metallic taste in your mouth</li>\n<li>sore breasts</li>\n<li>nausea &ndash; also known as morning sickness, although {{ you }} can experience it at any time.</li>\n<li>tiredness</li>\n<li>new food likes and dislikes</li>\n<li>a heightened sense of smell</li>\n<li>needing to pee more frequently</li>\n<li>a milky white pregnancy discharge from {{ your }} vagina</li>\n<li>light spotting as the fertilised egg burrows into your uterus (see your doctor if you get bleeding during pregnancy)</li>\n<li>cramping, a bit like period pains</li>\n<li>darkened skin on your face or brown patches &ndash; this is known as chloasma faciei or the \"mask of pregnancy\"</li>\n<li>thicker and shinier hair</li>\n</ul>",
+    "creation_date": "2025-03-26T15:56:51.494Z",
+    "last_updated": "2025-03-26T15:59:24.513Z",
+    "source": "https://www.nhs.uk/start-for-life/pregnancy/week-by-week-guide-to-pregnancy/1st-trimester/week-4/#pregnant",
+    "related_week": 4,
+    "image": ""
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 45,
+  "fields": {
+    "title": "The science of singing to bump",
+    "subtitle": "You might feel a little bit self-conscious singing to your belly in pregnancy, but there are a lot of reasons to give it a go.",
+    "text": "<p>For a start, your baby can hear your voice from only a matter of weeks into pregnancy, which is pretty amazing.</p>\n<p>Watch the short video below to find out all about the benefits of singing and talking to your bump.</p>\n<p><strong><br>When can babies hear in the womb?</strong></p>\n<p>At just four and a half months in the womb, they can already hear sound. They may hear muted sounds from the outside world and any noises {{ your }} digestive system makes, as well as the sound of {{ your }} voice and heart.</p>\n<p>By 18 weeks your baby's ears are beginning to send signals to the brain about the sounds that they can hear.</p>\n<p>By 23 weeks they can hear the muffled sounds of their mum's voice and by 24 weeks they respond to that voice. Scientific studies show they&rsquo;ll move around less in the womb and have a slower heartbeat when they hear their mum&rsquo;s voice.</p>\n<p>This is why, from the moment they&rsquo;re born, babies prefer the sound of their mother&rsquo;s voice to one they&rsquo;ve never heard.<br><br><br><strong>Why should you sing and talk to your baby in the womb?<br><br></strong>Reading out loud, carrying out conversations and singing songs and rhymes to your baby will help them to get to know your voice and can help with early bonding.</p>\n<p>It's not only great for baby but for you as well. Playing music can be a great way to relax and ease stress during pregnancy.</p>\n<p>Music that mimics a heartbeat of around 60 beats per minute, such as lullabies, is useful.&nbsp;<br><br>After 32 weeks, your baby may start to recognise certain vowel sounds from your language. Some research suggests that very early language development may begin before birth.<strong><br></strong></p>",
+    "creation_date": "2025-03-26T16:07:34.624Z",
+    "last_updated": "2025-03-26T16:08:39.048Z",
+    "source": "https://www.bbc.co.uk/tiny-happy-people/articles/zwdrsk7",
+    "related_week": 18,
+    "image": "article_images/p08jblb1.jpg"
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 46,
+  "fields": {
+    "title": "What should I pack in my hospital bag?",
+    "subtitle": "From your hospital bag essentials, to nice-to-haves and everything you need for your new baby",
+    "text": "<p><strong>Hospital bag checklist</strong></p>\n<p>Choosing what to put in your hospital bag and packing it ready for the maternity ward is one of the most exciting parts of late pregnancy.</p>\n<p>It&rsquo;s a good idea to have a hospital bag packed byweek 35&nbsp;and either have it in the car you&rsquo;ll be travelling to the hospital in, or in the hallway ready to grab on your way out!</p>\n<p>Writing the checklist for your hospital bag, working out what essentials you&rsquo;ll need for yourself and your newborn, and then finally packing it all up really does bring it home just how close you are to holding your baby for the first time!</p>\n\nWhat should I pack in my hospital bag for me?\n<p>So what do you need to pack? As well as the items on our check-list below, you will probably want to add in some personal bits and bobs too &ndash; phone and chargers, books and magazines and perhaps a list of phone numbers for friends and family if your partner does not necessarily have all of them stored on his phone.</p>\n<ul>\n<li><strong>Your&nbsp;<a href=\"https://www.bounty.com/pregnancy-and-birth/preparing-for-your-new-arrival/birth-planning/writing-a-birth-plan\">birth plan</a>&nbsp;and hospital notes</strong></li>\n<li><strong>Clothes</strong>&nbsp;&ndash; An old nightdress for labour, this will likely get messy so don&rsquo;t buy anything new. Nightwear, including a dressing gown and slippers</li>\n<li><strong>Going home clothes</strong>&nbsp;these should be loose fitting and comfortable.</li>\n<li><strong>Maternity bra</strong></li>\n<li><strong>Nursing bras</strong>&nbsp;&ndash; pack two or three comfortable bras</li>\n<li><strong>Nightwear for breastfeeding</strong>&nbsp;- largetop or nightdress that opens at the front to make breastfeeding easier</li>\n<li><strong>Breast pads</strong></li>\n<li><strong>Maternity pads and lots of spare knickers&nbsp;(disposable ones are particularly helpful too!)</strong></li>\n<li><strong>Toiletries and a towel</strong>&nbsp;&ndash; basics including toothpaste and toothbrush, deodorant, flannel and shower stuff</li>\n<li><strong>Make up&nbsp;</strong></li>\n<li><strong>Lip balm</strong></li>\n<li><strong>Hairbrush and ties/clips for long hair</strong>&nbsp;&ndash; this can be especially helpful during labour when you&rsquo;re likely to get very hot</li>\n<li><strong>Snacks/cartons of drink</strong></li>\n<li><strong>Snacks for post-brith&nbsp;</strong>to give you energy eg. cereal bars, water, juice</li>\n<li><strong>TENS machine &ndash;&nbsp;</strong>if you plan to use one for pain relief</li>\n<li><strong>Plastic bag</strong>&nbsp;for dirty clothes</li>\n<li><strong>Antiseptic wipes</strong> - particularly if you're worried about shared toilets</li>\n</ul>\n\nNice-to-haves in your hospital bag\n<ul>\n<li><strong>iPad/tablet</strong></li>\n<li><strong>Book/magazines</strong></li>\n<li><strong>Favourite pillow</strong></li>\n<li><strong>Water spray</strong></li>\n<li><strong>Aromatherapy oils</strong>&nbsp;to keep the room calm</li>\n<li><strong>Bras to sleep in</strong>&nbsp;if it's more comfortable for you</li>\n<li><strong>Hot water bottle</strong> to help ease backache</li>\n</ul>\n\nIn case you stay in hospital longer it will be good to have:\n<ul>\n<li><strong>2 nursing bras</strong></li>\n<li><strong>Maternity pads</strong></li>\n<li><strong>Extra underwear</strong>&nbsp;- really comfy ones or several disposable paper ones</li>\n<li><strong>Comfy, loose clothing</strong></li>\n<li><strong>Spare nightwear</strong></li>\n<li><strong>Nipple cream</strong></li>\n<li><strong>Ear plugs</strong> - in case there's a lot of noise at night</li>\n</ul>\n\n<br><br>",
+    "creation_date": "2025-03-26T16:22:12.350Z",
+    "last_updated": "2025-03-26T16:26:10.635Z",
+    "source": "https://www.bounty.com/family/brands-we-love/lidl/what-should-i-pack-in-my-hospital-bag",
+    "related_week": 35,
+    "image": "article_images/Packing_a_hospital_bag_474.jpg"
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 47,
+  "fields": {
+    "title": "First Days Home With Baby: Signs to Call the Doctor",
+    "subtitle": "You and baby just met, and suddenly they're all yours. Those first couple days at home can be nerve-racking. How will you know if something’s wrong?",
+    "text": "<p>Most newborns are perfectly healthy, and your parenting instincts kick in pretty quickly, so chances are you&rsquo;d know if there was a serious problem. Of course, you can call the doctor any time you&rsquo;re even a little concerned. But you should&nbsp;<em>definitely</em> pick up the phone if you notice any of these issues.<br><br></p>\n<p><strong>Fever<br></strong>No, you don&rsquo;t need to check baby&rsquo;s temperature if everything seems fine, says Janelle Aby, MD, medical director of the Well Baby Nursery at Lucile Packard Children&rsquo;s Hospital Stanford and clinical associate professor of pediatrics at Stanford University School of Medicine. But you should if there are other symptoms (especially those below) you&rsquo;re worried about, or baby&rsquo;s skin feels warm or cool to the touch. For a newborn, a&nbsp;<a href=\"https://www.thebump.com/a/baby-fever\" target=\"_blank\">fever</a> is considered 100.4 degrees Fahrenheit or higher; a temperature is too low if it&rsquo;s under 97.7 degrees Fahrenheit and also warrants a call to the pediatrician.<br><br></p>\n<p><strong>Baby Won&rsquo;t Eat or Isn&rsquo;t Peeing<br></strong>Newborns shouldn&rsquo;t refuse to eat, says Aby, especially if two to three hours have gone by since the last feeding. Check baby&rsquo;s diapers. If the number of wet ones decreases, they could be dehydrated.<br><br></p>\n<p><strong>Yellowish Skin or Eyes<br></strong>If baby&rsquo;s skin or eyes become increasingly yellow, they have jaundice, which means they have high levels of bilirubin (a naturally occurring substance that gives bile that yellowish color) in their blood. In mild cases, baby&rsquo;s jaundice will go away on its own with plenty of feedings, but in more severe cases, baby may need light therapy treatment at the doctor&rsquo;s office or hospital.</p>\n<p><strong>Blood or Weird-Looking Spit-Up<br></strong>Two more symptoms Aby says to look out for are green spit-up (could signal an intestinal problem) and blood pretty much anywhere (including poop, spit-up and around the circumcision area). In those cases, &ldquo;baby needs to be evaluated promptly in case treatment is necessary,&rdquo; she urges.<br><br></p>\n<p><strong>When Not to Worry<br></strong>Okay, we told you what&rsquo;s most concerning. Now, here&rsquo;s what might seem scary but isn&rsquo;t necessarily a problem.<br><br></p>\n<p><strong>There&rsquo;s a pink-orange smudge in the diaper<br></strong>This may look like blood but it&rsquo;s not. &ldquo;The discoloration, which can appear in the pee-soaked area, is caused by urate crystals which are normally present in urine,&rdquo; says Aby. &ldquo;Usually the color disappears after the first week or so when urine flow increases.&rdquo;</p>\n<p><strong>Or even a</strong>&nbsp;<em>little</em><strong> blood<br></strong>&ldquo;Here&rsquo;s the one exception to the general rule of &lsquo;worry if anything is bleeding,&rsquo;&rdquo; says Aby. Some baby girls have vaginal bleeding that starts three to five days after birth and continues for a few days. It&rsquo;s caused by the change in hormone levels due to her birth. Blood should only be about the size of a nickel or quarter, Aby says. And while it&rsquo;s not cause for concern, if it concerns you, you can still have the pediatrician confirm it&rsquo;s normal bleeding.</p>\n<p><strong>Baby&rsquo;s eyes look crossed<br></strong>Especially when baby is sleepy, you might notice their eyes&rsquo; alignment is a little off. &ldquo;Newborns have relatively weak eye muscles, so babies who are less than two months old will often have moments when their eyes cross or diverge,&rdquo; Aby says. Only if you still notice it happening at six months is it an issue.</p>",
+    "creation_date": "2025-03-26T17:41:41.055Z",
+    "last_updated": "2025-03-26T17:52:52.280Z",
+    "source": "https://www.thebump.com/a/first-days-home-with-baby-when-to-call-the-doctor",
+    "related_week": 41,
+    "image": "article_images/first-48-hours-call-doctor-2160X1200.webp"
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 48,
+  "fields": {
+    "title": "How Do I Help My Mad Toddler Express Anger in a Healthier Way?",
+    "subtitle": "Ask Your Mom expert Emily Edlynn tells us how we can help toddlers through their temper tantrums.",
+    "text": "<p>When my 3-year-old toddler gets mad, she looks at me with squinted eyes, clenched teeth, and sometimes growls. It's evident she is very angry, and seems to get angry quite often when she doesn't get her way or is told \"no.\" Before, she would hit and kick. I was able to get her to stop doing that by allowing her to use her expressions to show anger, but now we are here. What is the best way to help her express her anger in a healthy way&mdash;Angry Toddler Problems<br><br></p>\n<p>I am going to reframe your situation: Your 3-year-old shows self-control&nbsp;and progress that you both should be proud of. Your work with her has clearly paid off. At her age, growling with an angry face&nbsp;<em>is</em>&nbsp;expressing anger in a healthy way because no people or property are harmed in the process.</p>\n<p>I suggest switching up the question: \"How do I&nbsp;<em>keep</em> helping her express anger in healthy ways?\" What you continue to do with her during these angry episodes matters as her brain develops emotional regulation skills with every passing day of big feelings and not getting exactly what she wants.<br><br></p>\n<p><strong>Why Is Anger Management Tough To Teach?</strong></p>\n<p>I have noticed in my work with families, and in real life knowing anyone parenting children, that anger can be our toughest emotion to navigate. Our childhood experiences with adults expressing anger can play out with our own children. Seeing our child's anger may be an emotional trigger for those whose caregivers blew up easily, or unfamiliar territory for those whose caregivers withdrew and went silent when angry, communicating that expressing anger&nbsp;is not permitted.</p>\n<p>Because anger makes us uncomfortable for a range of reasons, we often convey to our children to express emotions, except anger. If we get more comfortable with anger as a natural human emotion, we help our children embrace their own, eventually without hurting anyone&mdash;or growling.<br><br></p>\n<p><strong>Anger and the Young Brain</strong></p>\n<p>The young child has the brain parts to feel strong emotions suddenly, but not yet the brain development to harness these emotions. In working with children in my therapy office, I start with the basics of emotions with almost every child regardless of age, like noticing how they feel in their bodies, labeling the feelings, and then articulating emotions to eventually replace exploding behaviors.</p>\n<p>In my years of therapy practice and motherhood, I can attest that young children most often do not have the ability to calmly state how they are feeling when angry. It's too complex for their brains. Doing so entails:</p>\n<ul>\n<li>Noticing</li>\n<li>Stopping a strong impulse</li>\n<li>Having insight</li>\n<li>Being able to put words to a highly emotional experience</li>\n</ul>\n<p>(Side note: How many adults do you know who struggle with this?)<br><br><br></p>\n<p><strong>How To Manage Expectations</strong></p>\n<p>There's a very important concept from child development critical for your dilemma: scaffolding. This refers to helping our children build important skills in a way that matches the skills they already have, and their readiness to level up.</p>\n<p>You have done this by helping your daughter replace destructive acts of anger&nbsp;with facial expressions and vocalizations that express her anger safely. It sounds like you see the next level as replacing this type of expression with behavior that feels more socially appropriate.</p>\n<p>Because it is probably a high bar for a 3-year-old to express anger calmly with words, I recommend focusing on two goals as the next developmental steps:</p>\n<ul>\n<li><strong>Physically regulating strong emotion</strong>: This coping skill will help dial down the intensity of anger, giving her emotional regulation tools to last a lifetime.</li>\n<li><strong>Becoming comfortable with her anger</strong>: Adults and other caregivers will be her greatest emotional teachers in this regard. Work on modeling this good behavior.</li>\n</ul>\n<p>&nbsp;</p>\n<p><strong>Co-Regulation is Key</strong></p>\n<p>This may sound a bit fancy, but self-regulation is actually one of our most powerful strategies for emotional health: learning to calm our bodies when in distress. Regulating with your daughter, called co-regulation, helps her feel how her nervous system shifts from high alert to calm. High alert, which happens when we feel intense emotions like fear and anger, can include a racing heart, heated up body temperature, tense muscles, and rapid breathing.</p>\n<p>When my son gets heated, sometimes I take his hand in mine, put it on his chest, and simply say, \"feel your heart right now.\" When toddlers get mad, they need us to regulate with them, which means&nbsp;<em>we</em>&nbsp;need to be regulated (calm). When we stay calm and offer physical comfort like hugging, sitting them on our laps, or holding hands, our calmer nervous systems help their little bodies better regulate those big emotions.</p>\n<p>&nbsp;</p>\n<p><strong>Modeling Anger Acceptance</strong></p>\n<p>The next greatest gift you can offer as a parent is modeling that anger is an acceptable emotion. We achieve this by showing that we are comfortable with our children being angry. This means avoiding two common traps: talking them out of their anger and becoming overwhelmed by it ourselves.</p>\n<p>Our youngest children's anger can look quite ridiculous on the surface, so it's easy to say, \"this is so not a big deal&mdash;calm down!\" (I've done it.) When possible, however, validating \"you're angry because you're not getting what you want and that is really hard,\" offers empathy that goes a long way.</p>\n<p>I've had my share of moments wanting my kids to just&nbsp;<em>stop</em> being upset, but I've learned how important it is to stick in there with the distress as often as I can and to resort less often to shutting down the anger (my own yelling)&nbsp;&nbsp;or escaping it (tuning out with some Facebook scrolling). Just like when they are sad and you sit next to them rubbing their backs while they cry, you can show them they can feel angry and get through it: \"I see you are really angry. I'm here when you're ready to sit in my lap.\"</p>\n<p>Note: We accept all emotions, but not all behaviors. While they are angry, we continue supporting safety. \"It's fine to be angry, but not to punch me.\"</p>\n<p>Once their bodies are calm, you can then guide dialogue about what made them mad, how it felt, and what helped it pass. This helps children practice self-awareness, identify coping strategies, and build confidence that anger passes, just like the scariest thunderstorms eventually end.</p>\n<p>&nbsp;</p>\n<p><strong>The Bottom Line</strong></p>\n<p>With time, practice, and buckets of patience, I promise your daughter will progress beyond the angry animal stage. Accepting the emotion of anger itself while you work on expression skills at each developmental stage will prepare her well for long-term emotional health. She's fortunate to have such a wise and invested parent, even if you get angry about her anger sometimes. After all, you're both only human, and at least she knows you'll always be there for her. Even when she growls.</p>",
+    "creation_date": "2025-03-26T18:38:15.171Z",
+    "last_updated": "2025-03-26T18:39:26.096Z",
+    "source": "https://www.parents.com/parenting/better-parenting/advice/ask-your-mom/my-kids-toddler-tantrums-are-getting-out-of-hand-how-do-i-help-her-express-anger-in-a-healthier-way/",
+    "related_week": 197,
+    "image": "article_images/Ask-Your-Mom-Angry-Toddler-Final--fc53adcfe73145138f0370476b316621.webp"
   }
 },
 {
@@ -509,161 +417,11 @@
 },
 {
   "model": "notifications.notification",
-  "pk": 5,
-  "fields": {
-    "recipient": 1,
-    "notification_message": "Your comment has just received an upvote",
-    "timestamp": "2025-02-20T20:52:25.486Z",
-    "is_read": true
-  }
-},
-{
-  "model": "notifications.notification",
-  "pk": 6,
-  "fields": {
-    "recipient": 1,
-    "notification_message": "Your comment has just received an upvote",
-    "timestamp": "2025-02-20T20:52:37.189Z",
-    "is_read": true
-  }
-},
-{
-  "model": "notifications.notification",
-  "pk": 7,
-  "fields": {
-    "recipient": 1,
-    "notification_message": "Your comment has just received an upvote",
-    "timestamp": "2025-02-20T20:52:42.653Z",
-    "is_read": true
-  }
-},
-{
-  "model": "notifications.notification",
-  "pk": 8,
-  "fields": {
-    "recipient": 38,
-    "notification_message": "LiamFlynnTwo has commented on your post '£6.00 of Pamper's Nappy packs'",
-    "timestamp": "2025-02-20T21:20:37.522Z",
-    "is_read": false
-  }
-},
-{
-  "model": "notifications.notification",
-  "pk": 9,
-  "fields": {
-    "recipient": 1,
-    "notification_message": "Your comment was removed by one of our moderators.",
-    "timestamp": "2025-02-20T21:27:56.811Z",
-    "is_read": true
-  }
-},
-{
-  "model": "notifications.notification",
-  "pk": 10,
-  "fields": {
-    "recipient": 38,
-    "notification_message": "LiamFlynn has commented on your post 'New post'",
-    "timestamp": "2025-02-22T14:51:35.342Z",
-    "is_read": false
-  }
-},
-{
-  "model": "notifications.notification",
-  "pk": 11,
-  "fields": {
-    "recipient": 1,
-    "notification_message": "Your comment in New post just received an upvote!",
-    "timestamp": "2025-02-22T15:11:25.609Z",
-    "is_read": true
-  }
-},
-{
-  "model": "notifications.notification",
-  "pk": 12,
-  "fields": {
-    "recipient": 1,
-    "notification_message": "Your comment in New post just received an upvote!",
-    "timestamp": "2025-02-22T15:11:30.589Z",
-    "is_read": true
-  }
-},
-{
-  "model": "notifications.notification",
-  "pk": 13,
-  "fields": {
-    "recipient": 1,
-    "notification_message": "Your comment in New post just received an upvote!",
-    "timestamp": "2025-02-22T15:11:31.515Z",
-    "is_read": true
-  }
-},
-{
-  "model": "notifications.notification",
-  "pk": 14,
-  "fields": {
-    "recipient": 1,
-    "notification_message": "Your comment in 'New post' just received an upvote!",
-    "timestamp": "2025-02-22T15:29:45.711Z",
-    "is_read": true
-  }
-},
-{
-  "model": "notifications.notification",
-  "pk": 15,
-  "fields": {
-    "recipient": 1,
-    "notification_message": "Your comment in 'New post' just received an upvote!",
-    "timestamp": "2025-02-22T15:29:50.609Z",
-    "is_read": true
-  }
-},
-{
-  "model": "notifications.notification",
-  "pk": 16,
-  "fields": {
-    "recipient": 1,
-    "notification_message": "Your comment in 'New post' just received an upvote!",
-    "timestamp": "2025-02-22T15:29:52.946Z",
-    "is_read": true
-  }
-},
-{
-  "model": "notifications.notification",
-  "pk": 17,
-  "fields": {
-    "recipient": 1,
-    "notification_message": "Your comment in 'New post' just received an upvote!",
-    "timestamp": "2025-02-22T15:29:53.937Z",
-    "is_read": true
-  }
-},
-{
-  "model": "notifications.notification",
-  "pk": 18,
-  "fields": {
-    "recipient": 38,
-    "notification_message": "LiamFlynnTwo has commented on your post 'New post'",
-    "timestamp": "2025-02-22T16:01:33.845Z",
-    "is_read": false
-  }
-},
-{
-  "model": "notifications.notification",
   "pk": 19,
   "fields": {
     "recipient": 39,
     "notification_message": "Your comment in 'New post' just received an upvote!",
     "timestamp": "2025-02-22T16:02:44.394Z",
-    "is_read": true
-  }
-},
-{
-  "model": "notifications.notification",
-  "pk": 20,
-  "fields": {
-    "recipient": 1,
-    "notification_message": "Your comment in 'New post' just received an upvote!",
-    "timestamp": "2025-02-22T16:02:46.440Z",
     "is_read": true
   }
 },
@@ -694,36 +452,206 @@
     "recipient": 39,
     "notification_message": "Your comment in 'New post' just received an upvote!",
     "timestamp": "2025-02-23T18:50:39.730Z",
+    "is_read": true
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 102,
+  "fields": {
+    "recipient": 40,
+    "notification_message": "LiamFlynnTwo has commented on your post 'Anyone else having issues with employers not agreeing?'",
+    "timestamp": "2025-03-24T11:29:50.431Z",
+    "is_read": true
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 103,
+  "fields": {
+    "recipient": 39,
+    "notification_message": "Your comment in 'Anyone else having issues with employers not agreeing?' just received an upvote!",
+    "timestamp": "2025-03-24T11:30:17.317Z",
     "is_read": false
   }
 },
 {
   "model": "notifications.notification",
-  "pk": 24,
+  "pk": 104,
   "fields": {
-    "recipient": 36,
-    "notification_message": "Your comment was removed by one of our moderators.",
-    "timestamp": "2025-03-03T12:15:40.437Z",
+    "recipient": 39,
+    "notification_message": "Your comment in 'Anyone else having issues with employers not agreeing?' just received an upvote!",
+    "timestamp": "2025-03-26T21:42:48.010Z",
     "is_read": false
   }
 },
 {
   "model": "notifications.notification",
-  "pk": 25,
+  "pk": 105,
   "fields": {
-    "recipient": 36,
-    "notification_message": "Your comment was removed by one of our moderators.",
-    "timestamp": "2025-03-03T12:21:34.524Z",
+    "recipient": 44,
+    "notification_message": "RaisingTinyHumans has commented on your post 'New baby and new remote WFH Job'",
+    "timestamp": "2025-03-27T11:05:32.794Z",
     "is_read": false
   }
 },
 {
   "model": "notifications.notification",
-  "pk": 26,
+  "pk": 106,
   "fields": {
-    "recipient": 36,
-    "notification_message": "Your comment was removed by one of our moderators.",
-    "timestamp": "2025-03-03T15:45:37.257Z",
+    "recipient": 43,
+    "notification_message": "Your comment in 'New baby and new remote WFH Job' just received an upvote!",
+    "timestamp": "2025-03-27T11:06:01.363Z",
+    "is_read": false
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 107,
+  "fields": {
+    "recipient": 44,
+    "notification_message": "DadModeActivated has commented on your post 'New baby and new remote WFH Job'",
+    "timestamp": "2025-03-27T11:08:01.763Z",
+    "is_read": false
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 108,
+  "fields": {
+    "recipient": 43,
+    "notification_message": "Your comment in 'New baby and new remote WFH Job' just received an upvote!",
+    "timestamp": "2025-03-27T11:08:14.277Z",
+    "is_read": false
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 109,
+  "fields": {
+    "recipient": 42,
+    "notification_message": "Your comment in 'New baby and new remote WFH Job' just received an upvote!",
+    "timestamp": "2025-03-27T11:08:59.112Z",
+    "is_read": false
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 110,
+  "fields": {
+    "recipient": 44,
+    "notification_message": "MomBrainMoments has commented on your post 'New baby and new remote WFH Job'",
+    "timestamp": "2025-03-27T11:10:02.386Z",
+    "is_read": false
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 111,
+  "fields": {
+    "recipient": 43,
+    "notification_message": "Your comment in 'New baby and new remote WFH Job' just received an upvote!",
+    "timestamp": "2025-03-27T11:39:46.091Z",
+    "is_read": false
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 112,
+  "fields": {
+    "recipient": 42,
+    "notification_message": "Your comment in 'New baby and new remote WFH Job' just received an upvote!",
+    "timestamp": "2025-03-27T11:39:46.651Z",
+    "is_read": false
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 113,
+  "fields": {
+    "recipient": 43,
+    "notification_message": "MomBrainMoments has commented on your post 'Need help. The lack of sleep is killing me.'",
+    "timestamp": "2025-03-27T14:09:53.171Z",
+    "is_read": false
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 114,
+  "fields": {
+    "recipient": 43,
+    "notification_message": "DadModeActivated has commented on your post 'Need help. The lack of sleep is killing me.'",
+    "timestamp": "2025-03-27T14:10:53.616Z",
+    "is_read": false
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 115,
+  "fields": {
+    "recipient": 43,
+    "notification_message": "SleeplessParent has commented on your post 'Need help. The lack of sleep is killing me.'",
+    "timestamp": "2025-03-27T14:13:46.211Z",
+    "is_read": false
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 116,
+  "fields": {
+    "recipient": 43,
+    "notification_message": "RaisingTinyHumans has commented on your post 'Need help. The lack of sleep is killing me.'",
+    "timestamp": "2025-03-27T14:16:17.158Z",
+    "is_read": false
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 117,
+  "fields": {
+    "recipient": 43,
+    "notification_message": "Your comment in 'Need help. The lack of sleep is killing me.' just received an upvote!",
+    "timestamp": "2025-03-27T14:16:25.603Z",
+    "is_read": false
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 118,
+  "fields": {
+    "recipient": 43,
+    "notification_message": "Your comment in 'Need help. The lack of sleep is killing me.' just received an upvote!",
+    "timestamp": "2025-03-27T14:16:30.866Z",
+    "is_read": false
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 119,
+  "fields": {
+    "recipient": 43,
+    "notification_message": "MomBrainMoments has commented on your post 'Size 1 nappies free anywhere?'",
+    "timestamp": "2025-03-27T14:25:07.383Z",
+    "is_read": false
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 120,
+  "fields": {
+    "recipient": 44,
+    "notification_message": "Your comment in 'Size 1 nappies free anywhere?' just received an upvote!",
+    "timestamp": "2025-03-27T14:25:12.496Z",
+    "is_read": false
+  }
+},
+{
+  "model": "notifications.notification",
+  "pk": 121,
+  "fields": {
+    "recipient": 43,
+    "notification_message": "DadModeActivated has commented on your post 'Size 1 nappies free anywhere?'",
+    "timestamp": "2025-03-27T14:26:36.384Z",
     "is_read": false
   }
 },

@@ -22,6 +22,10 @@ describe("Forum Tests", () => {
   it("Should allow creating a new post", () => {
     cy.visit("/forums/1/");
 
+    cy.get("#toggle-post-form").click();
+    // wait for the form to become visible
+    cy.get("#new-post-form").should("be.visible");
+
     // fill in the post title
     cy.get("input[name='postTitle']").type("Test Post Title");
 
@@ -51,6 +55,10 @@ describe("Forum Tests", () => {
 
   it("Should allow adding a comment and then deleting it", () => {
     cy.visit("/forums/1/posts/1/");
+
+      // click the toggle button to reveal the new comment form
+      cy.get("#toggle-comment-form").click();
+      cy.get("#new-comment-form").should("be.visible");
 
     // fill in the TinyMCE editor for the comment
     cy.get("iframe#id_commentText_ifr", { timeout: 10000 })
@@ -90,8 +98,8 @@ describe("Forum Tests", () => {
     cy.get("ul.space-y-6 > li")
       .filter((index, el) => {
         const $el = Cypress.$(el);
-        const upvoteBtn = $el.find("button[id^='upvote-btn-']");
-        const downvoteBtn = $el.find("button[id^='downvote-btn-']");
+        const upvoteBtn = $el.find("button[id^='upvote-button-']");
+        const downvoteBtn = $el.find("button[id^='downvote-button-']");
         const scoreText = $el.find("span[id^='score-']").text().trim();
         return (
           upvoteBtn.length > 0 && downvoteBtn.length > 0 && scoreText === "0"
@@ -100,24 +108,24 @@ describe("Forum Tests", () => {
       .first()
       .then(($comment) => {
         // extract the comment ID from the upvote button's ID
-        const upvoteId = $comment.find("button[id^='upvote-btn-']").attr("id");
-        const commentId = upvoteId.split("upvote-btn-")[1];
+        const upvoteId = $comment.find("button[id^='upvote-button-']").attr("id");
+        const commentId = upvoteId.split("upvote-button-")[1];
 
         // upvote the comment and verify the score increments to 1
-        cy.get(`#upvote-btn-${commentId}`).click();
+        cy.get(`#upvote-button-${commentId}`).click();
         cy.get(`#score-${commentId}`, { timeout: 10000 }).should(
           "contain",
           "1"
         );
 
         // downvote the comment and verify the score returns to 0
-        cy.get(`#downvote-btn-${commentId}`).click();
+        cy.get(`#downvote-button-${commentId}`).click();
         cy.get(`#score-${commentId}`, { timeout: 10000 }).should(
           "contain",
           "-1"
         );
         // set it back to what it was
-        cy.get(`#downvote-btn-${commentId}`).click();
+        cy.get(`#downvote-button-${commentId}`).click();
       });
   });
 });

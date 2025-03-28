@@ -1,5 +1,7 @@
 describe('Eligibility Questionnaire', () => {
-    beforeEach(() => {
+  
+  beforeEach(() => {
+    cy.login(Cypress.env("user_username"), Cypress.env("user_password"));
       // visit the questionnaire page.
       cy.visit('/calculator/');
     });

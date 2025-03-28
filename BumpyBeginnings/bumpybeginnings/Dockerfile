@@ -16,4 +16,4 @@ EXPOSE 8000
 RUN chmod +x entrypoint.sh
 
 # run the entrypoint script
-ENTRYPOINT ["./entrypoint.sh"]
+CMD ["/bin/sh", "-c", "./entrypoint.sh"]

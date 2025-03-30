@@ -2,6 +2,7 @@ from django.dispatch import receiver
 from allauth.account.signals import user_logged_in
 from .models import SiteUser
 
+
 @receiver(user_logged_in)
 def ensure_user_details(sender, request, user, **kwargs):
     # Check if the user has the necessary details

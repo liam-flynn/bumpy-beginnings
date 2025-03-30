@@ -28,7 +28,8 @@ class UserForm(forms.ModelForm):
     def clean_username(self):
         username = self.cleaned_data.get('username')
         if len(username) < 1:
-            raise ValidationError("Username must be at least 1 character long.")
+            raise ValidationError(
+                "Username must be at least 1 character long.")
         if User.objects.filter(username=username).exists():
             raise ValidationError("A user with that username already exists.")
         return username
@@ -55,7 +56,7 @@ class SiteUserForm(forms.ModelForm):
         widgets = {
             'isMother': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'dueDate': forms.DateInput(attrs={
-                'type': 'date', 
+                'type': 'date',
                 'class': 'form-control mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-sky-400 focus:border-sky-400',
             }),
             'partnerName': forms.TextInput(attrs={
@@ -64,6 +65,7 @@ class SiteUserForm(forms.ModelForm):
                 'class': 'mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-sky-400 focus:border-sky-400'
             }),
         }
+
 
 class UpdateUserForm(forms.ModelForm):
     class Meta:
@@ -85,6 +87,8 @@ class UpdateUserForm(forms.ModelForm):
         }
 
 # code repurposed from my AWD Final project
+
+
 class PasswordUpdateForm(forms.ModelForm):
     password = forms.CharField(
         required=False,

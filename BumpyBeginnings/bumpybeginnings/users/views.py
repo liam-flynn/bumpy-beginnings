@@ -121,23 +121,24 @@ def manage_mod_privileges(request):
     if request.method == 'POST':
         user_id = request.POST.get('user_id')
         action = request.POST.get('action')
-        try:
-            user = User.objects.get(pk=user_id)
-            site_user, created = SiteUser.objects.get_or_create(user=user)
-            # "grant" sets "isForumMod" to True
-            if action == 'grant':
-                site_user.isForumMod = True
-                site_user.save()
-                messages.success(request, f"{user.username} has been granted moderator privileges.")
-            # "remove" sets "isForumMod" to False
-            elif action == 'remove':
-                site_user.isForumMod = False
-                site_user.save()
-                messages.success(request, f"Moderator privileges removed for {user.username}.")
-        except User.DoesNotExist:
-            messages.error(request, "User does not exist.")
-        
-        return render(request, 'manage_mod_privileges.html', {'page_obj': page_obj, 'query': query})
+        if user_id:
+            try:
+                user = User.objects.get(pk=user_id)
+                site_user, created = SiteUser.objects.get_or_create(user=user)
+                # "grant" sets "isForumMod" to True
+                if action == 'grant':
+                    site_user.isForumMod = True
+                    site_user.save()
+                    messages.success(request, f"{user.username} has been granted moderator privileges.")
+                # "remove" sets "isForumMod" to False
+                elif action == 'remove':
+                    site_user.isForumMod = False
+                    site_user.save()
+                    messages.success(request, f"Moderator privileges removed for {user.username}.")
+            except User.DoesNotExist:
+                messages.error(request, "User does not exist.")
+            
+            return render(request, 'manage_mod_privileges.html', {'page_obj': page_obj, 'query': query})
 
     return render(request, 'manage_mod_privileges.html', {'page_obj': page_obj, 'query': query})
 
